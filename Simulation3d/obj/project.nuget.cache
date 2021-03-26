@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "DV+/UTNT9M9nae4DgZeH+y7RdixFsM/g2ZhKKuXdbF4RgJtgdfSHBZEaHHFmHZyE0r05l9Q1DHJv+X87CYOyVA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\User\\Desktop\\projects\\Stm32Project\\Simulation3d\\Simulation3d.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.win32.registry\\4.4.0\\microsoft.win32.registry.4.4.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.io.ports\\4.4.0\\system.io.ports.4.4.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.security.accesscontrol\\4.4.0\\system.security.accesscontrol.4.4.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.security.principal.windows\\4.4.0\\system.security.principal.windows.4.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

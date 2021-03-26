@@ -1,6 +1,17 @@
-#unfinished modules 
-CortexLib
+# Unfinished modules 
 RtosWrapper
 
 # Unfinished docs 
-Docs 
+Docs/Requirements.docx
+Docs/Requirements.pdf
+Docs/Stm32Project.docx
+Docs/Stm32Project.pdf
+
+# Process docs
+/Docs/books
+/Docs/ProcessDocs.md
+/Docs/KnowledgeBase
+
+# Snippets
+Snippets
+CortexLib
