@@ -35,7 +35,7 @@
                             <GeometryModel3D.Transform>
                                 <RotateTransform3D>
                                     <RotateTransform3D.Rotation>
-                                        <AxisAngleRotation3D x:Name="Model3dAngleRotation" Axis="3,0,0" />
+                                        <AxisAngleRotation3D x:Name="Model3dAngleRotation" Axis="{Binding AxisVector}" />
                                     </RotateTransform3D.Rotation>
                                 </RotateTransform3D>
                             </GeometryModel3D.Transform>

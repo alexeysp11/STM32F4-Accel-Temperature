@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -122,19 +123,73 @@ namespace Simulation3d
         /// </summary>
         private void KeyUp_Handling(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.E)
+            if (e.Key == Key.E)         // Rotation around X axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
+                
+                // For 2D model. 
                 RectangleRotation.Angle += 5; 
+
+                // For 3D model. 
+                Model3dAngleRotation.Axis = new Vector3D(1,0,0);
                 Model3dAngleRotation.Angle += 5; 
             }
-            else if (e.Key == Key.Q)
+            else if (e.Key == Key.Q)    // Rotation around X axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
+
+                // For 2D model. 
                 RectangleRotation.Angle -= 5; 
+
+                // For 3D model. 
+                Model3dAngleRotation.Axis = new Vector3D(1,0,0);
                 Model3dAngleRotation.Angle -= 5; 
             }
-            else if (e.Key == Key.A)    // Left. 
+            else if (e.Key == Key.R)    // Rotation around Y axis.
+            {
+                ArrowAccel.Visibility = Visibility.Collapsed;
+
+                // For 2D model. 
+                //RectangleRotation.Angle -= 5; 
+
+                // For 3D model. 
+                Model3dAngleRotation.Axis = new Vector3D(0,1,0);
+                Model3dAngleRotation.Angle += 5; 
+            }
+            else if (e.Key == Key.F)    // Rotation around Y axis.
+            {
+                ArrowAccel.Visibility = Visibility.Collapsed;
+
+                // For 2D model. 
+                //RectangleRotation.Angle -= 5; 
+
+                // For 3D model. 
+                Model3dAngleRotation.Axis = new Vector3D(0,1,0);
+                Model3dAngleRotation.Angle -= 5; 
+            }
+            else if (e.Key == Key.X)    // Rotation around Z axis.
+            {
+                ArrowAccel.Visibility = Visibility.Collapsed;
+
+                // For 2D model. 
+                //RectangleRotation.Angle -= 5; 
+
+                // For 3D model. 
+                Model3dAngleRotation.Axis = new Vector3D(0,0,1);
+                Model3dAngleRotation.Angle += 5; 
+            }
+            else if (e.Key == Key.Z)    // Rotation around Z axis.
+            {
+                ArrowAccel.Visibility = Visibility.Collapsed;
+
+                // For 2D model. 
+                //RectangleRotation.Angle -= 5; 
+
+                // For 3D model. 
+                Model3dAngleRotation.Axis = new Vector3D(0,0,1);
+                Model3dAngleRotation.Angle -= 5; 
+            }
+            else if (e.Key == Key.A)    // Left (acceleration). 
             {
                 ArrowAccel.Visibility = Visibility.Visible;
                 ArrowAccelRotation.Angle = 180; 
