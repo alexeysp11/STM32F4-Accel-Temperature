@@ -126,13 +126,13 @@ namespace Simulation3d
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
                 RectangleRotation.Angle += 5; 
-                ArrowAccelRotation.Angle += 5; 
+                Model3dAngleRotation.Angle += 5; 
             }
             else if (e.Key == Key.Q)
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
                 RectangleRotation.Angle -= 5; 
-                ArrowAccelRotation.Angle -= 5; 
+                Model3dAngleRotation.Angle -= 5; 
             }
             else if (e.Key == Key.A)    // Left. 
             {

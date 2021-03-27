@@ -36,6 +36,7 @@
 
 ![StatechartSystem](img/StatechartSystem.png)
 
+<!--Перепроверить диаграммы компонентов, преобразовать их в диаграммы пакетов (библиотек)-->
 **Диаграмма компонентов** для *измерительной части* системы может выглядеть следующим образом: 
 
 ![MeasuringSystemComponents](img/MeasuringSystemComponents.png)
