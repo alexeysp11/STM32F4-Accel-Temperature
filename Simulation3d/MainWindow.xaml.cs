@@ -25,6 +25,8 @@ namespace Simulation3d
         
         private CircuitBoard _CurcuitBoard = null; 
         private ComPort _ComPort = null; 
+        System.Windows.Threading.DispatcherTimer updateLabelsTimer = null; 
+        Angle angle; 
         
         #endregion  // Members
 
@@ -44,13 +46,25 @@ namespace Simulation3d
 
             _CurcuitBoard = new CircuitBoard();
             _ComPort = new ComPort(InfoLabel);
+            
+            angle = _CurcuitBoard.GetRotation(); 
 
             ArrowAccel.Visibility = Visibility.Collapsed;
 
-            Loaded += (o, e) => {
+            updateLabelsTimer = new System.Windows.Threading.DispatcherTimer();
+            updateLabelsTimer.Tick += (sender, args) => {
+                AngleX.Content = $"{angle.X}"; 
+                AngleY.Content = $"{angle.Y}"; 
+                AngleZ.Content = $"{angle.Z}"; 
+            }; 
+            updateLabelsTimer.Interval = TimeSpan.FromSeconds(0.1);
+
+            Loaded += (sender, args) => {
                 Is3dModel = false;
                 Model2d.Visibility = Visibility.Visible;
                 Viewport3d.Visibility = Visibility.Collapsed;
+
+                updateLabelsTimer.Start(); 
             };
 
             myCanvas.Focus();
@@ -126,68 +140,83 @@ namespace Simulation3d
             if (e.Key == Key.E)         // Rotation around X axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
+
+                // Set rotation angle of circuit board.
+                _CurcuitBoard.SetRotation(5, 0, 0); 
+                this.angle = _CurcuitBoard.GetRotation(); 
                 
                 // For 2D model. 
-                RectangleRotation.Angle += 5; 
+                RectangleRotation.Angle = this.angle.X; 
 
                 // For 3D model. 
-                Model3dAngleRotation.Axis = new Vector3D(1,0,0);
-                Model3dAngleRotation.Angle += 5; 
+                Model3dRotateAngleX.Angle = this.angle.X; 
             }
             else if (e.Key == Key.Q)    // Rotation around X axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
 
+                // Set rotation angle of circuit board.
+                _CurcuitBoard.SetRotation(-5, 0, 0); 
+                this.angle = _CurcuitBoard.GetRotation(); 
+
                 // For 2D model. 
-                RectangleRotation.Angle -= 5; 
+                RectangleRotation.Angle = this.angle.X; 
 
                 // For 3D model. 
-                Model3dAngleRotation.Axis = new Vector3D(1,0,0);
-                Model3dAngleRotation.Angle -= 5; 
+                Model3dRotateAngleX.Angle = this.angle.X; 
             }
             else if (e.Key == Key.R)    // Rotation around Y axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
 
-                // For 2D model. 
-                //RectangleRotation.Angle -= 5; 
+                // Set rotation angle of circuit board.
+                _CurcuitBoard.SetRotation(0, 5, 0); 
+                this.angle = _CurcuitBoard.GetRotation(); 
 
-                // For 3D model. 
-                Model3dAngleRotation.Axis = new Vector3D(0,1,0);
-                Model3dAngleRotation.Angle += 5; 
+                // For 2D model. 
+                //RectangleRotation.Angle += 5; 
+
+                // For 3D model.
+                Model3dRotateAngleY.Angle = this.angle.Y; 
             }
             else if (e.Key == Key.F)    // Rotation around Y axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
 
+                _CurcuitBoard.SetRotation(0, -5, 0); 
+                this.angle = _CurcuitBoard.GetRotation(); 
+
                 // For 2D model. 
                 //RectangleRotation.Angle -= 5; 
 
                 // For 3D model. 
-                Model3dAngleRotation.Axis = new Vector3D(0,1,0);
-                Model3dAngleRotation.Angle -= 5; 
+                Model3dRotateAngleY.Angle = this.angle.Y; 
             }
             else if (e.Key == Key.X)    // Rotation around Z axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
 
+                _CurcuitBoard.SetRotation(0, 0, 5); 
+                this.angle = _CurcuitBoard.GetRotation(); 
+
                 // For 2D model. 
                 //RectangleRotation.Angle -= 5; 
 
                 // For 3D model. 
-                Model3dAngleRotation.Axis = new Vector3D(0,0,1);
-                Model3dAngleRotation.Angle += 5; 
+                Model3dRotateAngleZ.Angle = this.angle.Z; 
             }
             else if (e.Key == Key.Z)    // Rotation around Z axis.
             {
                 ArrowAccel.Visibility = Visibility.Collapsed;
 
+                _CurcuitBoard.SetRotation(0, 0, -5); 
+                this.angle = _CurcuitBoard.GetRotation(); 
+
                 // For 2D model. 
                 //RectangleRotation.Angle -= 5; 
 
                 // For 3D model. 
-                Model3dAngleRotation.Axis = new Vector3D(0,0,1);
-                Model3dAngleRotation.Angle -= 5; 
+                Model3dRotateAngleZ.Angle = this.angle.Z; 
             }
             else if (e.Key == Key.A)    // Left (acceleration). 
             {
@@ -225,16 +254,16 @@ namespace Simulation3d
                 Canvas.SetTop(ArrowAccel, (Canvas.GetTop(Model2d) + Model2d.Height / 2) );
                 Canvas.SetLeft(ArrowAccel, (Canvas.GetLeft(Model2d) + Model2d.Width / 2) );
             }
-            else if (e.Key == Key.D2)
+            else if (e.Key == Key.D2)       // Display 2D model. 
             {
                 Is3dModel = false; 
                 Model2d.Visibility = Visibility.Visible;
-                Viewport3d.Visibility = Visibility.Collapsed;
+                Viewport3d.Visibility = Visibility.Collapsed;   // Hide 3D model. 
             }
-            else if (e.Key == Key.D3)
+            else if (e.Key == Key.D3)       // Display 3D model. 
             {
                 Is3dModel = true; 
-                Model2d.Visibility = Visibility.Collapsed;
+                Model2d.Visibility = Visibility.Collapsed;      // Hide 2D model. 
                 Viewport3d.Visibility = Visibility.Visible;
             }
 

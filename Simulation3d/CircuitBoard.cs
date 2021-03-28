@@ -1,13 +1,17 @@
 namespace Simulation3d
 {
-    struct Angle
+    public struct Angle
     {
-        
+        public float X; 
+        public float Y; 
+        public float Z; 
     }
 
-    struct Acceleration
+    public struct Acceleration
     {
-        
+        public float X; 
+        public float Y; 
+        public float Z; 
     }
 
     /// <summary>
@@ -22,8 +26,8 @@ namespace Simulation3d
     {
         #region Members
 
-        private Angle _Angle = new Angle(); 
-        private Acceleration _Accel = new Acceleration(); 
+        private Angle _Angle; 
+        private Acceleration _Accel; 
 
         #endregion  // Members
 
@@ -32,6 +36,9 @@ namespace Simulation3d
 
         public CircuitBoard()
         {
+            _Angle.X = 0; 
+            _Angle.Y = 0; 
+            _Angle.Z = 0; 
         }
 
         #endregion  // Constructor
@@ -39,12 +46,24 @@ namespace Simulation3d
 
         #region Methods 
 
-        public void GetRotation()
+        public Angle GetRotation()
         {
+            return _Angle; 
+        }
 
+        public void SetRotation(float dx, float dy, float dz)
+        {
+            _Angle.X += dx; 
+            _Angle.Y += dy; 
+            _Angle.Z += dz; 
         }
 
         public void GetAcceleration()
+        {
+
+        } 
+
+        public void SetAcceleration()
         {
 
         } 
