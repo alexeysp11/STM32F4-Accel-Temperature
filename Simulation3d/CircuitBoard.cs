@@ -1,5 +1,8 @@
 namespace Simulation3d
 {
+    /// <summary>
+    /// Structure for storing values of rotation angle. 
+    /// </summary>
     public struct Angle
     {
         public float X; 
@@ -7,6 +10,9 @@ namespace Simulation3d
         public float Z; 
     }
 
+    /// <summary>
+    /// Structure for storing values of acceleration. 
+    /// </summary>
     public struct Acceleration
     {
         public float X; 
@@ -15,7 +21,8 @@ namespace Simulation3d
     }
 
     /// <summary>
-    /// . 
+    /// Provides functionality for rotating 3D model and setting its 
+    /// acceleration along each of 3 axis. 
     /// </summary>
     /// <remarks>
     /// Maybe it is necessary to use Singleton pattern to avoid creating 
@@ -46,6 +53,9 @@ namespace Simulation3d
 
         #region Methods 
 
+        /// <returns>
+        /// An instance of Angle struct. 
+        /// </returns>
         public Angle GetRotation()
         {
             return _Angle; 
@@ -54,7 +64,7 @@ namespace Simulation3d
         /// <summary>
         /// Sets values of an instance of Angle structure. 
         /// Adds deltas to rotation angle around each of axis and corrects
-        //// the values if they are less than -360 or bigger than 360. 
+        /// the values if they are less than -360 or bigger than 360. 
         /// </summary>
         /// <param name="dx">
         /// Delta for rotation around X axis (by default is equal to zero). 
@@ -67,10 +77,12 @@ namespace Simulation3d
         /// </param>
         public void SetRotation(float dx = 0, float dy = 0, float dz = 0)
         {
+            // Set angles. 
             _Angle.X += dx; 
             _Angle.Y += dy; 
             _Angle.Z += dz; 
 
+            // Correct value of rotation angle around X axis. 
             if (_Angle.X >= 360)
             {
                 _Angle.X -= 360; 
@@ -80,6 +92,7 @@ namespace Simulation3d
                 _Angle.X += 360; 
             }
 
+            // Correct value of rotation angle around Y axis. 
             if (_Angle.Y >= 360)
             {
                 _Angle.Y -= 360; 
@@ -89,6 +102,7 @@ namespace Simulation3d
                 _Angle.Y += 360; 
             }
 
+            // Correct value of rotation angle around Z axis. 
             if (_Angle.Z >= 360)
             {
                 _Angle.Z -= 360; 
@@ -99,11 +113,17 @@ namespace Simulation3d
             }
         }
 
+        /// <returns>
+        /// An instance of Acceleration struct. 
+        /// </returns>
         public Acceleration GetAcceleration()
         {
             return _Accel; 
-        } 
+        }
 
+        /// <summary>
+        /// Sets values of acceleration along each of 3 axis. 
+        /// </summary>
         public void SetAcceleration(float dx = 0, float dy = 0, float dz = 0)
         {
             _Accel.X += dx; 

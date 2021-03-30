@@ -26,6 +26,7 @@ namespace Simulation3d
         private CircuitBoard _CurcuitBoard = null; 
         private ComPort _ComPort = null; 
         System.Windows.Threading.DispatcherTimer updateLabelsTimer = null; 
+        System.Windows.Threading.DispatcherTimer clearInfoLabelTimer = null; 
         Angle angle; 
         
         #endregion  // Members
@@ -50,6 +51,13 @@ namespace Simulation3d
             }; 
             updateLabelsTimer.Interval = TimeSpan.FromSeconds(0.1);
 
+            clearInfoLabelTimer = new System.Windows.Threading.DispatcherTimer();
+            clearInfoLabelTimer.Tick += (sender, args) => {
+                InfoLabel.Content = ""; 
+                clearInfoLabelTimer.Stop();
+            };
+            clearInfoLabelTimer.Interval = TimeSpan.FromSeconds(3);
+
             Loaded += (sender, args) => {
                 updateLabelsTimer.Start(); 
             };
@@ -66,27 +74,40 @@ namespace Simulation3d
         /// If Refresh button was pressed, get all available COM-ports.  
         /// </summary>
         private void RefreshBtn_Click(object sender, RoutedEventArgs e)
-        {   
-            // Not to copy one COM port multiple times. 
-            ComPortsComboBox.Items.Clear();
-
-            // `ComPort.Ports` is hte array of COM ports. 
-            string[] arrayOfPorts = ComPort.Ports;
-
-            // Create new instances of COM ports. 
-            for (int i = 0; i < arrayOfPorts.Length; i++)
+        {
+            // Refresh only when COM-port is not connected. 
+            if (!_ComPort.IsConnected)
             {
-                ComPortsComboBox.Items.Add(arrayOfPorts[i]); 
+                // Not to copy one COM port multiple times. 
+                ComPortsComboBox.Items.Clear();
+
+                // `ComPort.Ports` is hte array of COM ports. 
+                string[] arrayOfPorts = ComPort.Ports;
+
+                // Create new instances of COM ports. 
+                for (int i = 0; i < arrayOfPorts.Length; i++)
+                {
+                    ComPortsComboBox.Items.Add(arrayOfPorts[i]); 
+                }
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("COM-port is already connected!");
             }
         }
 
         /// <summary>
         /// Connects or disconnects selected COM-port and changes content of 
-        /// a button that was pressed (from `Connect` to `Dosconnect` and 
+        /// a button that was pressed (from `Connect` to `Disconnect` and 
         /// vica versa). 
         /// </summary>
+        /// <exception cref="System.Exception">
+        /// Thrown when an instance of `ComPort` class is not created. 
+        /// </exception>
         private void ConnectDisconnectBtn_Click(object sender, RoutedEventArgs e)
         {
+            clearInfoLabelTimer.Start();
+
             if (_ComPort.IsConnected)
             {
                 try
@@ -105,7 +126,12 @@ namespace Simulation3d
                 {
                     _ComPort.Config(ComPortsComboBox.Text);
                     _ComPort.Open();
-                    ConnectDisconnectBtn.Content = "Close"; 
+
+                    // Change label only if COM-port is connected. 
+                    if (_ComPort.IsConnected)
+                    {
+                        ConnectDisconnectBtn.Content = "Close"; 
+                    }
                 }
                 catch (System.Exception ex)
                 {
