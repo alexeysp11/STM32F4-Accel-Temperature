@@ -60,22 +60,6 @@
         </Viewport3D>
 
         <Canvas Name="myCanvas" Focusable="True" KeyDown="KeyUp_Handling">
-            <!--2D model.-->
-            <Rectangle Name="Model2d" Margin="400,200" Height="75" Width="150" Fill="Blue" RenderTransformOrigin="0.5,0.5">
-                <Rectangle.RenderTransform>
-                    <RotateTransform x:Name="RectangleRotation"/>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-
-            <Path Name="ArrowAccel" Stroke="Black" Margin="475,232" Data="M 0 4 L 16 4 L 10 0 M 16 4 L 10 8" RenderTransformOrigin="0,0.5">
-                <Path.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="10" ScaleY="5" />
-                        <RotateTransform x:Name="ArrowAccelRotation"/>
-                    </TransformGroup>
-                </Path.RenderTransform>
-            </Path>
-
             <!--Information on the screen (acceleration and rotation angles 
             in all 3 dimensions).-->
             <Label Content="ANGLES (degrees)" HorizontalAlignment="Left" Margin="10,15" VerticalAlignment="Top" Foreground="Black" Height="30"/>
@@ -103,6 +87,5 @@
                 <ComboBox Name="ComPortsComboBox" HorizontalAlignment="Left" Margin="10,215" VerticalAlignment="Top" Foreground="Black" Height="25" Width="125"/>
             </StackPanel>
         </Canvas>
-        
     </Grid>
 </Window>
