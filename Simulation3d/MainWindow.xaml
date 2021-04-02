@@ -77,6 +77,7 @@
             <Label Name="AccelY" Content="0" HorizontalAlignment="Left" Margin="25,115" VerticalAlignment="Top" Foreground="Black" Height="25"/>
             <Label Content="Z:" HorizontalAlignment="Left" Margin="10,130" VerticalAlignment="Top" Foreground="Black" Height="25"/>
             <Label Name="AccelZ" Content="0" HorizontalAlignment="Left" Margin="25,130" VerticalAlignment="Top" Foreground="Black" Height="25"/>
+            
             <Label Name="InfoLabel" HorizontalAlignment="Left" Margin="150,15" VerticalAlignment="Top" Foreground="Black" Height="25" Width="300" />
             
             <!--UART configuration area.-->
