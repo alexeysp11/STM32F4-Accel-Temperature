@@ -80,6 +80,10 @@
 
 ![GraphicalSystemComponents](img/UML/GraphicalSystemComponents.png)
 
+Диаграмма классов графической подсистемы приложения представлена на рисунке ниже: 
+
+![MeasurinSystemClassDiagramOverall](img/UML/MeasurinSystemClassDiagramOverall.png)
+
 Полное описание классов представлено по [ссылке](ClassesDescription.md). 
 
 В *графической подсистеме*, наверное, нужно будет реализовывать шаблон **Singleton** (для того, чтобы предотвратить двойное создание таких объектов как *плата* и *COM-порт*) и **Наблюдатель** (для отслеживания наличия изменений *вектора состояния* платы). 
