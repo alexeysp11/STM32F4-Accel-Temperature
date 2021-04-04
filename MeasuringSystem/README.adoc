@@ -1,15 +1,12 @@
-= RTOS wrapper for students
+= MeasuringSystem (using RTOS wrapper)
 
-This the example of RTOS wrapper for FreeRTOS for Stm32F411 microcontroller
+This part of the project was developed using the following repository as an example: 
+https://github.com/lamer0k/RtosWrapper. 
 
-To use the wrapper, it needs to copy the next folder:
+This is an example of RTOS wrapper for FreeRTOS for Stm32F411 microcontroller. 
 
-– CMSIS 
-
-– Rtos
-
-also it needs to define __forceinline macros (`#define __forceinline  _Pragma(&quot;inline=forced&quot;)` for IAR) in Rtos\wrapper\FreeRtos\rtosdefs.hpp file
- See more information on https://habr.com/ru/post/420467/
+To use the wrapper, it needs to define __forceinline macros (`#define __forceinline  _Pragma(&quot;inline=forced&quot;)` for IAR) in Rtos\wrapper\FreeRtos\rtosdefs.hpp file. 
+See more information on https://habr.com/ru/post/420467/
 
 Example of creating a task:
 
@@ -93,20 +90,5 @@ return 0;
 
 == How to run the example
 
-It needs to copy CortexLib (https://github.com/lamer0k/CortexLib) to have the next folder structure:
-
-```
- - CortexLib
-   -- AbstractHardware
-   -- Common
- - RtosWrapper
-   -- AHardware
-   -- Application
-   -- CMSIS
-   -- Common
-   -- MyTasks
-   -- Rtos
-```
-
-Then it is possible to just open the RtosWrapper directory in the JetBrains Clion.
-Or if you use IAR 8.40.2 open the test.eww workspace or iarproject.ewp project.
+In order to run this part of the project, just open the this directory in the JetBrains Clion.
+Or if you use IAR 8.40.2, open the test.eww workspace or iarproject.ewp project.
