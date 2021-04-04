@@ -1,4 +1,4 @@
-# Architecture 
+# Class descriptions 
 
 ## Table of contents
 
@@ -33,17 +33,43 @@
 
 ![Filter](img/UML/ClassDesriptions/Filter.png)
 
-### Packet "Peripheral"
+### Packet "Transmission"
+
+#### TransmissionManager
+
+![TransmissionManager](img/UML/ClassDesriptions/TransmissionManager.png)
+
+### Packet "Peripherals"
+
+#### TempSensor
+
+![TempSensor](img/UML/ClassDesriptions/TempSensor.png)
 
 #### AccelDriver
 
 ![AccelDriver](img/UML/ClassDesriptions/AccelDriver.png)
+
+#### AdcDriver
+
+![AdcDriver](img/UML/ClassDesriptions/AdcDriver.png)
+
+#### I2CDriver
+
+![I2CDriver](img/UML/ClassDesriptions/I2CDriver.png)
 
 #### UartDriver
 
 ![UartDriver](img/UML/ClassDesriptions/UartDriver.png)
 
 ### Packet "CPU"
+
+#### Adc 
+
+![Adc](img/UML/ClassDesriptions/Adc.png)
+
+#### I2C 
+
+![I2C](img/UML/ClassDesriptions/I2C.png)
 
 #### Uart 
 
