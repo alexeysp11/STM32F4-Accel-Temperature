@@ -27,8 +27,9 @@ namespace Simulation3d
         private ComPort _ComPort = null; 
         System.Windows.Threading.DispatcherTimer updateLabelsTimer = null; 
         System.Windows.Threading.DispatcherTimer clearInfoLabelTimer = null; 
-        Angle angle; 
-        
+        Angle angle;
+        Acceleration accel;
+
         #endregion  // Members
 
 
@@ -41,13 +42,29 @@ namespace Simulation3d
             _CurcuitBoard = new CircuitBoard();
             _ComPort = new ComPort(InfoLabel);
             
-            angle = _CurcuitBoard.GetRotation(); 
+            angle = _CurcuitBoard.GetRotation();
+            accel = _CurcuitBoard.GetAcceleration();
 
             updateLabelsTimer = new System.Windows.Threading.DispatcherTimer();
             updateLabelsTimer.Tick += (sender, args) => {
                 AngleX.Content = $"{angle.X}"; 
                 AngleY.Content = $"{angle.Y}"; 
-                AngleZ.Content = $"{angle.Z}"; 
+                AngleZ.Content = $"{angle.Z}";
+
+                // Adjust acceleration because acceleration cannot be the same
+                // if the state of a real life object does not change. 
+                _CurcuitBoard.AdjustAcceleration();
+                this.accel = _CurcuitBoard.GetAcceleration();
+                this.angle = _CurcuitBoard.GetRotation();
+
+                // Rotate 3D model. 
+                Model3dRotateAngleX.Angle = this.angle.X;
+                Model3dRotateAngleY.Angle = this.angle.Y;
+                Model3dRotateAngleZ.Angle = this.angle.Z;
+
+                AccelX.Content = $"{accel.X}";
+                AccelY.Content = $"{accel.Y}";
+                AccelZ.Content = $"{accel.Z}";
             }; 
             updateLabelsTimer.Interval = TimeSpan.FromSeconds(0.1);
 
@@ -188,15 +205,33 @@ namespace Simulation3d
             }
             else if (e.Key == Key.A)    // Left (acceleration). 
             {
+                _CurcuitBoard.SetAcceleration(-5, 0, 0);
+                this.accel = _CurcuitBoard.GetAcceleration();
             }
             else if (e.Key == Key.D)    // Right (acceleration). 
             {
+                _CurcuitBoard.SetAcceleration(5, 0, 0);
+                this.accel = _CurcuitBoard.GetAcceleration();
             }
             else if (e.Key == Key.W)    // Up (acceleration). 
             {
+                _CurcuitBoard.SetAcceleration(0, 5, 0);
+                this.accel = _CurcuitBoard.GetAcceleration();
             }
             else if (e.Key == Key.S)    // Down (acceleration). 
             {
+                _CurcuitBoard.SetAcceleration(0, -5, 0);
+                this.accel = _CurcuitBoard.GetAcceleration();
+            }
+            else if (e.Key == Key.C)    // Up (acceleration). 
+            {
+                _CurcuitBoard.SetAcceleration(0, 5, 0);
+                this.accel = _CurcuitBoard.GetAcceleration();
+            }
+            else if (e.Key == Key.V)    // Down (acceleration). 
+            {
+                _CurcuitBoard.SetAcceleration(0, -5, 0);
+                this.accel = _CurcuitBoard.GetAcceleration();
             }
 
             myCanvas.Focus();

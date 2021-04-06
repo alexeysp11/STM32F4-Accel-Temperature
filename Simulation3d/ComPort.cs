@@ -34,6 +34,15 @@ namespace Simulation3d
         #region Properties
 
         /// <summary>
+        /// Codes (ASCII HEX) for getting which sensor sent data. 
+        /// </summary>
+        public enum SensorNames
+        {
+            Accelerometer = 41, 
+            TermalSensor = 54
+        }
+
+        /// <summary>
         /// Public static field of string elements that represent COM-port. 
         /// </summary>
         public static string[] Ports { get { return SerialPort.GetPortNames(); } }
@@ -287,6 +296,12 @@ namespace Simulation3d
             if (_InfoLabel != null)
             {
                 _InfoLabel.Dispatcher.Invoke(() => {
+                    // Unpack receiced message. 
+                    // Get which sensor sent data (if none of sensor sent, ignore message because it's a noise). 
+                    // Get 2 bytes of data. 
+                    // Compare CRC. 
+
+                    // Change content of the label. 
                     _InfoLabel.Content = msg; 
                     _InfoLabel.Foreground = color; 
                 });

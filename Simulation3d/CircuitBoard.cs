@@ -113,6 +113,9 @@ namespace Simulation3d
             }
         }
 
+        /// <summary>
+        /// Gets values of acceleration along each of 3 axis. 
+        /// </summary>
         /// <returns>
         /// An instance of Acceleration struct. 
         /// </returns>
@@ -126,11 +129,61 @@ namespace Simulation3d
         /// </summary>
         public void SetAcceleration(float dx = 0, float dy = 0, float dz = 0)
         {
+            // Adjust all accelerations. 
             _Accel.X += dx; 
             _Accel.Y += dy; 
             _Accel.Z += dz;
-        } 
-        
+
+            // Calculate rotation using acceleration. 
+            float dxAngle = (float)System.Math.Atan2(_Accel.Y,
+                System.Math.Sqrt(System.Math.Pow(_Accel.X, 2) + System.Math.Pow(_Accel.Z, 2))); 
+            float dyAngle = (float)System.Math.Atan2(_Accel.X,
+                System.Math.Sqrt(System.Math.Pow(_Accel.Y, 2) + System.Math.Pow(_Accel.Z, 2))); 
+            float dzAngle = (float)System.Math.Atan2(System.Math.Sqrt(System.Math.Pow(_Accel.X, 2) + System.Math.Pow(_Accel.Y, 2)),
+                _Accel.Z);
+
+            this.SetRotation(dxAngle, dyAngle, dzAngle);
+        }
+
+        /// <summary>
+        /// Adjust acceleration (decrease acceleration if it's negative, 
+        /// increase acceleration if it's positive, do nothing 
+        /// if acceleration is equal to 0). 
+        /// </summary>
+        /// <remarks>
+        /// It is needed because acceleration cannot be the same, 
+        /// if the state of a real life object does not change.
+        /// </remarks>
+        public void AdjustAcceleration()
+        {
+            if (_Accel.X > 0)       // Decrease acceleration by 1 if it is positive. 
+            {
+                _Accel.X -= 1; 
+            }
+            else if (_Accel.X < 0)  // Increase acceleration if it is negative by 1. 
+            {
+                _Accel.X += 1;
+            }
+
+            if (_Accel.Y > 0)       // Decrease acceleration by 1 if it is positive. 
+            {
+                _Accel.Y -= 1;
+            }
+            else if (_Accel.Y < 0)  // Increase acceleration if it is negative by 1. 
+            {
+                _Accel.Y += 1;
+            }
+
+            if (_Accel.Z > 0)       // Decrease acceleration by 1 if it is positive. 
+            {
+                _Accel.Z -= 1;
+            }
+            else if (_Accel.Z < 0)  // Increase acceleration if it is negative by 1. 
+            {
+                _Accel.Z += 1;
+            }
+        }
+
         #endregion  // Methods
     }
 }
