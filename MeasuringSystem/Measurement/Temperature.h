@@ -7,6 +7,8 @@
 #define _TEMPERATURE_H
 
 #include "IVariableTemp.h"
+#include "TempSensor.h"         // for TempSensor. 
+#include "IFilter.h"            // for IFilter. 
 
 
 class Temperature: public IVariableTemp 
@@ -16,7 +18,10 @@ public:
      * @param sensor
      * @param filter
      */
-    void Temperature(TempSensor& sensor, IFilter& filter);
+    Temperature(TempSensor& sensor, 
+                             IFilter& filter) : m_sensor(sensor), m_filter(filter) 
+    {
+    }
         
     void Measure();
         

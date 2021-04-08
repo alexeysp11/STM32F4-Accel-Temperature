@@ -6,13 +6,18 @@
 #ifndef _TEMPSENSOR_H
 #define _TEMPSENSOR_H
 
+#include "AdcDriver.h"              // for AdcDriver. 
+#include "IDataSource.h"            // for IDataSource. 
+
 class TempSensor 
 {
 public: 
     /**
      * @param adcDriver
      */
-    void TempSensor(AdcDriver adcDriver);
+    TempSensor(AdcDriver adcDriver) : m_ds(adcDriver)
+    {
+    }
         
     float Get();
 private: 

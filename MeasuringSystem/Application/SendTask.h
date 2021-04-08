@@ -6,20 +6,26 @@
 #ifndef _SENDTASK_H
 #define _SENDTASK_H
 
+#include "MeasureTask.h"            // for MeasureTask. 
+#include "TransmissionManager.h"    // for TransmissionManager. 
+
+
 class SendTask : public OsWrapper::Thread<static_cast<std::size_t>(OsWrapper::StackDepth::minimal)>
 {
-    friend class Singleton<LedsModeFirst>;
 public: 
     /**
      * @param measuring
-     * @param uartdriver
+     * @param tm
      */
-    void SendTask(MeasureTask& measuring, UartDriver& uartdriver);
+    SendTask(MeasureTask& measuring, TransmissionManager& tm) : m_measuring(measuring), 
+                                                                m_tm(tm)
+    {
+    }
         
     void Execute() override;
 private: 
     MeasureTask& m_measuring;
-    UartDriver& m_uartdriver;
+    TransmissionManager& m_tm;
 };
 
 #endif //_SENDTASK_H

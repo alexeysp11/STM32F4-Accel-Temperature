@@ -11,24 +11,18 @@
 
 
 /**
- * @param sensor
- * @param filter
- */
-void Acceleration::AccelerationX(AccelDriver& sensor, IFilter& filter) 
-{
-
-}
-
-/**
  * @return void
  */
-void Acceleration::Measure() {
+void Acceleration::Measure() 
+{
     return;
 }
 
 /**
  * @return float[]
  */
-float[] Acceleration::GetValue() {
-    return null;
+float* Acceleration::GetValue() 
+{
+    float var = 0.0f; 
+    return &var;
 }

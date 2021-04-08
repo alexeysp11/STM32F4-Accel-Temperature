@@ -12,7 +12,7 @@ public:
     /**
      * @param value
      */
-    virtual float Filter(float value) = 0;
+    virtual float Calculate(float value) = 0;
 private: 
     float oldValue;
 };

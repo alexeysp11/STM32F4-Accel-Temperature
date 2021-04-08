@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "C:\Users\User\Desktop\projects\stm32Labs\RtosWrapper\settings\iarproject.Debug.general.xcl" --backend -f "C:\Users\User\Desktop\projects\stm32Labs\RtosWrapper\settings\iarproject.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\settings\iarproject.Debug.general.xcl" --backend -f "C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\settings\iarproject.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "C:\Users\User\Desktop\projects\stm32Labs\RtosWrapper\settings\iarproject.Debug.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\User\Desktop\projects\stm32Labs\RtosWrapper\settings\iarproject.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\settings\iarproject.Debug.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\settings\iarproject.Debug.driver.xcl" 
 
 @echo off 
 :end

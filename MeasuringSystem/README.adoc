@@ -1,4 +1,4 @@
-= MeasuringSystem (using RTOS wrapper)
+= MeasuringSystem 
 
 This part of the project was developed using the following repository as an example: 
 https://github.com/lamer0k/RtosWrapper. 

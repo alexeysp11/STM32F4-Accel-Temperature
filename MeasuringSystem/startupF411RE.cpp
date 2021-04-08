@@ -15,8 +15,14 @@
 
 #pragma language = extended
 #pragma segment = "CSTACK"
+
+#include "UartDriver.h"
+#include "usartconfig.h"
+
 #include "AHardware/IrqController/irqcontroller.hpp"
 #include "Rtos/wrapper/rtos.hpp"
+
+//#include "usart2registers.hpp"
 
 extern "C" void __iar_program_start( void );
 extern "C" void xPortPendSVHandler(void);
@@ -24,7 +30,7 @@ extern "C" void xPortPendSVHandler(void);
 
 class DummyModule
 {
-  public:
+public:
     static void handler();
 };
 
@@ -42,6 +48,7 @@ using tIntVectItem = union {tIntFunct __fun; void * __ptr;};
 
 #pragma location = ".intvec"
 //cstat !MISRAC++2008-0-1-4_b !MISRAC++2008-9-5-1
+
 extern "C" const tIntVectItem __vector_table[] =
 {
   { .__ptr = __sfe( "CSTACK" ) },
@@ -100,7 +107,7 @@ extern "C" const tIntVectItem __vector_table[] =
   DummyModule::handler,         //SPI1
   DummyModule::handler,         //SPI2
   DummyModule::handler,         //USART1
-  DummyModule::handler,         // USART2
+  Usart2::InterruptHandler,         // USART2
   0,
   IrqController::HandleIrqExtiLine15_10,         //EXTI Line 15..10
   DummyModule::handler,         // EXTI Line 17 interrupt / RTC Alarms (A and B) through EXTI line interrupt
@@ -156,11 +163,11 @@ extern "C" void __cmain( void );
 extern "C" __weak void __iar_init_core( void );
 extern "C" __weak void __iar_init_vfp( void );
 
-#pragma required=__vector_table
+#pragma required = __vector_table
+
 void __iar_program_start( void )
 {
   __iar_init_core();
   __iar_init_vfp();
   __cmain();
 }
-

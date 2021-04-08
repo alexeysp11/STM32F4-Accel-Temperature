@@ -11,14 +11,6 @@
 
 
 /**
- * @param adc
- */
-void AdcDriver::AdcDriver(Adc& adc) 
-{
-
-}
-
-/**
  * @return float
  */
 float AdcDriver::Get() 

@@ -14,7 +14,7 @@
  * @param values
  * @return float
  */
-float Filter::Filter(float values) 
+float Filter::Calculate(float values) 
 {
     return 0.0;
 }

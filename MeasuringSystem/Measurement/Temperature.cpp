@@ -11,15 +11,6 @@
 
 
 /**
- * @param sensor
- * @param filter
- */
-void Temperature::Temperature(TempSensor& sensor, IFilter& filter) 
-{
-
-}
-
-/**
  * @return void
  */
 void Temperature::Measure() 

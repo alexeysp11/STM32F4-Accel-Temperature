@@ -17,21 +17,17 @@
 
 
 /**
- * @param temp
- * @param accel
- */
-void MeasureTask::MeasureTask(IVariableTemp& temp, IVariableAccel& accel) 
-{
-
-}
-
-/**
  * @return void
  */
 void MeasureTask::Execute() 
 {
     while (true)
     {
+        // Measure temperature. 
+        m_temp.Measure(); 
+
+        // Measure acceleration. 
+        
         /* Invoke `OsWrapper::IThread::Sleep()` that makes a delay that is 
         equal to a value of timeout between events. */
         Sleep( std::chrono::milliseconds(50ms) );
@@ -39,9 +35,15 @@ void MeasureTask::Execute()
 }
 
 /**
- * @return float[]
+ * @return float*
  */
-float[] MeasureTask::GetData() 
+float* MeasureTask::GetData() 
 {
-    return null;
+    // Get measured data data. 
+    buffer[0] = m_temp.GetValue();       // Get data from temperature sensor. 
+    buffer[1] = 0; 
+    buffer[2] = 0; 
+    buffer[3] = 0; 
+    
+    return &buffer[0];
 }

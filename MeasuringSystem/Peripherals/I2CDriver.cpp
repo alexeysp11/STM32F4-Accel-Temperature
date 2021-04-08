@@ -11,14 +11,6 @@
 
 
 /**
- * @param i2c
- */
-void I2CDriver::I2CDriver(I2C& i2c) 
-{
-
-}
-
-/**
  * @return float
  */
 float I2CDriver::Get() 

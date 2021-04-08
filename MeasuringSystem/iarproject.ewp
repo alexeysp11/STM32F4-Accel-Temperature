@@ -361,17 +361,21 @@
                     <state>$PROJ_DIR$\Application</state>
                     <state>$PROJ_DIR$\Application\Diagnostic</state>
                     <state>$PROJ_DIR$\AHardware</state>
-                    <state>$PROJ_DIR$\AHardware\GpioPort</state>
                     <state>$PROJ_DIR$\AHardware\IrqController</state>
-                    <state>$PROJ_DIR$\AHardware\Pin</state>
                     <state>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues</state>
                     <state>$PROJ_DIR$\AHardware\Registers\STM32F411</state>
                     <state>$PROJ_DIR$\AHardware\Registers</state>
-                    <state>$PROJ_DIR$\AHardware\Port</state>
                     <state>$PROJ_DIR$\AHardware\Atomic</state>
+                    <state>$PROJ_DIR$\AHardware\I2C</state>
+                    <state>$PROJ_DIR$\AHardware\ADC</state>
+                    <state>$PROJ_DIR$\AHardware\USART</state>
                     <state>$PROJ_DIR$\Common</state>
                     <state>$PROJ_DIR$\Common\Singleton</state>
                     <state>$PROJ_DIR$\Common\RomObject</state>
+                    <state>$PROJ_DIR$\Filters</state>
+                    <state>$PROJ_DIR$\Peripherals</state>
+                    <state>$PROJ_DIR$\Measurement</state>
+                    <state>$PROJ_DIR$\Transmission</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -2144,6 +2148,12 @@
             </file>
         </group>
         <group>
+            <name>I2C</name>
+            <file>
+                <name>$PROJ_DIR$\AHardware\I2C\I2C.h</name>
+            </file>
+        </group>
+        <group>
             <name>InterruptHandler</name>
             <file>
                 <name>$PROJ_DIR$\AHardware\InterruptHandler\interrupthandler.hpp</name>
@@ -2156,21 +2166,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\AHardware\IrqController\irqcontroller.hpp</name>
-            </file>
-        </group>
-        <group>
-            <name>Pin</name>
-            <file>
-                <name>$PROJ_DIR$\AHardware\Pin\pin.hpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\AHardware\Pin\pinspack.hpp</name>
-            </file>
-        </group>
-        <group>
-            <name>Port</name>
-            <file>
-                <name>$PROJ_DIR$\AHardware\Port\port.hpp</name>
             </file>
         </group>
         <group>
@@ -2488,6 +2483,15 @@
                 <name>$PROJ_DIR$\AHardware\Registers\registertype.hpp</name>
             </file>
         </group>
+        <group>
+            <name>USART</name>
+            <file>
+                <name>$PROJ_DIR$\AHardware\USART\UsartBase.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\AHardware\USART\usartconfig.h</name>
+            </file>
+        </group>
     </group>
     <group>
         <name>Application</name>
@@ -2507,37 +2511,88 @@
             </file>
         </group>
         <file>
-            <name>$PROJ_DIR$\Application\leds.hpp</name>
+            <name>$PROJ_DIR$\Application\MeasureTask.cpp</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\Application\ledscontroller.hpp</name>
+            <name>$PROJ_DIR$\Application\MeasureTask.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\Application\ledsdriver.hpp</name>
+            <name>$PROJ_DIR$\Application\SendTask.cpp</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\Application\ledsmode.hpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Application\ledsmodes.hpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Application\userbutton.hpp</name>
+            <name>$PROJ_DIR$\Application\SendTask.h</name>
         </file>
     </group>
     <group>
-        <name>MyTasks</name>
+        <name>Filters</name>
         <file>
-            <name>$PROJ_DIR$\MyTasks\HandleBtnTask.cpp</name>
+            <name>$PROJ_DIR$\Filters\Filter.cpp</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\MyTasks\HandleBtnTask.hpp</name>
+            <name>$PROJ_DIR$\Filters\Filter.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\MyTasks\ToggleLedsTask.cpp</name>
+            <name>$PROJ_DIR$\Filters\filterconfig.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\MyTasks\ToggleLedsTask.hpp</name>
+            <name>$PROJ_DIR$\Filters\IFilter.h</name>
+        </file>
+    </group>
+    <group>
+        <name>Measurement</name>
+        <file>
+            <name>$PROJ_DIR$\Measurement\Acceleration.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Measurement\Acceleration.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Measurement\IVariableAccel.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Measurement\IVariableTemp.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Measurement\measureconfig.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Measurement\Temperature.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Measurement\Temperature.h</name>
+        </file>
+    </group>
+    <group>
+        <name>Peripherals</name>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\AccelDriver.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\AccelDriver.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\AdcDriver.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\AdcDriver.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\I2CDriver.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\I2CDriver.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\IDataSource.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\TempSensor.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\TempSensor.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Peripherals\UartDriver.h</name>
         </file>
     </group>
     <group>
@@ -2641,6 +2696,15 @@
                 <name>$PROJ_DIR$\Rtos\wrapper\thread.hpp</name>
             </file>
         </group>
+    </group>
+    <group>
+        <name>Transmission</name>
+        <file>
+            <name>$PROJ_DIR$\Transmission\TransmissionManager.cpp</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Transmission\TransmissionManager.h</name>
+        </file>
     </group>
     <file>
         <name>$PROJ_DIR$\main.cpp</name>

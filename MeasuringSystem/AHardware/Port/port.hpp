@@ -23,7 +23,6 @@
 template <typename T>
 struct Port
 {
-  
   using ModerType = typename T::MODER::Type ;
   __forceinline static void Set(std::uint32_t value)
   {

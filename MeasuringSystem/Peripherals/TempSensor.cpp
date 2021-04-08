@@ -11,14 +11,6 @@
 
 
 /**
- * @param adcDriver
- */
-void TempSensor::TempSensor(AdcDriver adcDriver) 
-{
-
-}
-
-/**
  * @return float
  */
 float TempSensor::Get() 

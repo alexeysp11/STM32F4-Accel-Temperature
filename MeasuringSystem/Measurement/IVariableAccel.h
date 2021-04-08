@@ -6,12 +6,13 @@
 #ifndef _IVARIABLEACCEL_H
 #define _IVARIABLEACCEL_H
 
-class IVariableAccel {
+class IVariableAccel 
+{
 public: 
     virtual void Measure() = 0;
-    virtual float[] GetValue() = 0;
+    virtual float* GetValue() = 0;
 private: 
-    float[] value;
+    float* value;
 };
 
 #endif //_IVARIABLEACCEL_H

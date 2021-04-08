@@ -6,14 +6,20 @@
 #ifndef _ACCELDRIVER_H
 #define _ACCELDRIVER_H
 
-class AccelDriver {
+#include "I2CDriver.h"              // for I2CDriver. 
+#include "IDataSource.h"            // for IDataSource. 
+
+class AccelDriver 
+{
 public: 
     /**
-     * @param m_i2cDriver
+     * @param i2cDriver
      */
-    void AccelDriver(I2CDriver& m_i2cDriver);
+    AccelDriver(I2CDriver& i2cDriver) : m_ds(i2cDriver)
+    {
+    }
         
-    float[] Get();
+    float* Get();
 private: 
     IDataSource& m_ds;
 };

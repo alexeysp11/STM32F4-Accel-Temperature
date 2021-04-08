@@ -11,15 +11,10 @@
 
 
 /**
- * @param m_i2cDriver
- */
-void AccelDriver::AccelDriver(I2CDriver& m_i2cDriver) {
-
-}
-
-/**
  * @return float[]
  */
-float[] AccelDriver::Get() {
-    return null;
+float* AccelDriver::Get() 
+{
+    float var = 0.0; 
+    return &var;
 }

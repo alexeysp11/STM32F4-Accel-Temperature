@@ -12,16 +12,6 @@
  * Is a task that executes every 100 ms.
  */
 
-
-/**
- * @param measuring
- * @param uartdriver
- */
-void SendTask::SendTask(MeasureTask& measuring, UartDriver& uartdriver) 
-{
-
-}
-
 /**
  * @return void
  */
@@ -32,5 +22,11 @@ void SendTask::Execute()
         /* Invoke `OsWrapper::IThread::Sleep()` that makes a delay that is 
         equal to a value of timeout between events. */
         Sleep( std::chrono::milliseconds(100ms) );
+          
+        // Get measured values from MeasureTask. 
+        float* data = m_measuring.GetData(); 
+        
+        // Invoke UartDriver class and pass references to measured data.
+        m_tm.ConvertToByte(data, sizeof(*data));
     }
 }
