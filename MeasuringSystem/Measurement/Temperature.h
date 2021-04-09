@@ -29,6 +29,7 @@ public:
 private: 
     TempSensor& m_sensor;
     IFilter& m_filter;
+    float value = 0.0f; 
 };
 
 #endif //_TEMPERATURE_H

@@ -29,11 +29,12 @@
  * CPU registers. 
  *****************************************************/
 
-#include "rccregisters.hpp"     // for RCC.
-#include "extiregisters.hpp"    // for EXTI. 
-#include <gpioaregisters.hpp>   // for GPIOA.
-#include <gpiocregisters.hpp>   // for GPIOC.
-#include "usart2registers.hpp"  // for USART2. 
+#include "rccregisters.hpp"             // for RCC.
+#include "nvicregisters.hpp"            // for NVIC. 
+#include <gpioaregisters.hpp>           // for GPIOA.
+#include <gpiocregisters.hpp>           // for GPIOC.
+#include "usart2registers.hpp"          // for USART2. 
+#include "adccommonregisters.hpp"       // for ADC1. 
 
 #include "Application/Diagnostic/GlobalStatus.hpp"
 
@@ -45,7 +46,7 @@
 // assign SystemCoreClock (from port.s file). 
 std::uint32_t SystemCoreClock = 16'000'000U;    
 
-constexpr std::uint32_t UartSpeed9600 = std::uint32_t(16'000'000U / 9'600U) ;
+constexpr std::uint32_t UartSpeed19200 = std::uint32_t(8'000'000U / 19'200U);
 
 extern "C" {
   int __low_level_init(void)
@@ -54,11 +55,15 @@ extern "C" {
     RCC::CR::HSION::On::Set();
     while (RCC::CR::HSIRDY::NotReady::IsSet());
 
-    //Switch system clock on external oscillator. 
+    // Switch system clock on external oscillator. 
     RCC::CFGR::SW::Hsi::Set();
     while (!RCC::CFGR::SWS::Hsi::IsSet());
+
+    /*****************************************************
+     * USART2 configuration. 
+     *****************************************************/
     
-    //Switch on clock on PortA a
+    // Switch on clock on PortA (for USART2). 
     RCC::AHB1ENR::GPIOAEN::Enable::Set() ;
     
     RCC::APB1ENRPack<
@@ -76,10 +81,26 @@ extern "C" {
       GPIOA::AFRL::AFRL3::Af7             // Uart2 RX.
       >::Set() ;
   
-    USART2::BRR::Write(UartSpeed9600) ;
+    USART2::BRR::Write(UartSpeed19200) ;
     USART2::CR1::UE::Enable::Set() ;
     
-    //NVIC::ISER1::Write(1<<6);
+    NVIC::ISER1::Write(1<<6);
+
+    /*****************************************************
+     * ADC1 configuration. 
+     *****************************************************/
+
+    RCC::APB2ENR::ADC1EN::Enable::Set();
+    ADC1::SQR3::SQ1::Channel18::Set();        // Select ADC1_IN16 or ADC1_IN18 input channel.
+    ADC_Common::CCR::TSVREFE::Enable::Set();  // Set the TSVREFE bit in the ADC_CCR register to wake up the temperature sensor.
+    ADC1::CR1::RES::Bits12::Set();
+    ADC1::CR2::CONT::SingleConversion::Set();
+    ADC1::CR2::EOCS::SingleConversion::Set();
+    ADC1::SQR1::L::Conversions1::Set();
+    ADC1::SMPR1::SMP18::Cycles84::Set();
+    ADC1::CR2::ADON::Enable::Set();
+
+    GPIOA::MODER::MODER0::Analog::Set();
 
     return 1;
   }

@@ -364,6 +364,7 @@
                     <state>$PROJ_DIR$\AHardware\IrqController</state>
                     <state>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues</state>
                     <state>$PROJ_DIR$\AHardware\Registers\STM32F411</state>
+                    <state>$PROJ_DIR$\AHardware\Registers\DataTransmission</state>
                     <state>$PROJ_DIR$\AHardware\Registers</state>
                     <state>$PROJ_DIR$\AHardware\Atomic</state>
                     <state>$PROJ_DIR$\AHardware\I2C</state>
@@ -2171,6 +2172,12 @@
         <group>
             <name>Registers</name>
             <group>
+                <name>DataTransmission</name>
+                <file>
+                    <name>$PROJ_DIR$\AHardware\Registers\DataTransmission\dtregisters.h</name>
+                </file>
+            </group>
+            <group>
                 <name>STM32F411</name>
                 <group>
                     <name>FieldValues</name>
@@ -2233,6 +2240,12 @@
                     </file>
                     <file>
                         <name>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues\iwdgfieldvalues.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues\nvicfieldvalues.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues\nvicstirfieldvalues.hpp</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues\otgfsdevicefieldvalues.hpp</name>
@@ -2375,6 +2388,12 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\AHardware\Registers\STM32F411\iwdgregisters.hpp</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\AHardware\Registers\STM32F411\nvicregisters.hpp</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\AHardware\Registers\STM32F411\nvicstirregisters.hpp</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\AHardware\Registers\STM32F411\otgfsdeviceregisters.hpp</name>

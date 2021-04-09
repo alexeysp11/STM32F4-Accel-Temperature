@@ -22,7 +22,7 @@
 #include "AHardware/IrqController/irqcontroller.hpp"
 #include "Rtos/wrapper/rtos.hpp"
 
-//#include "usart2registers.hpp"
+#include <iostream>     // for std::cout. 
 
 extern "C" void __iar_program_start( void );
 extern "C" void xPortPendSVHandler(void);
@@ -32,6 +32,7 @@ class DummyModule
 {
 public:
     static void handler();
+    static void adc1handler(); 
 };
 
 using tIntFunct = void(*)();
@@ -87,7 +88,7 @@ extern "C" const tIntVectItem __vector_table[] =
   DummyModule::handler,         //DMA1 Stream 4
   DummyModule::handler,         //DMA1 Stream 5
   DummyModule::handler,         //DMA1 Stream 6
-  DummyModule::handler,         //ADC1
+  DummyModule::adc1handler,         //ADC1
   0,                            //USB High Priority
   0,                            //USB Low  Priority
   0,                            //DAC
@@ -157,7 +158,19 @@ extern "C" const tIntVectItem __vector_table[] =
   DummyModule::handler		//SPI 5 global interrupt
 };
 
-void DummyModule::handler()   { for(;;) {} } ;
+
+void DummyModule::handler() 
+{ 
+  for(;;) 
+  {
+  } 
+}
+
+void DummyModule::adc1handler()
+{ 
+  std::cout << "adc1handler invoked" << std::endl; 
+}
+
 
 extern "C" void __cmain( void );
 extern "C" __weak void __iar_init_core( void );

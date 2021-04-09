@@ -48,6 +48,8 @@ C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\
 -I
 C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411
 -I
+C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\DataTransmission
+-I
 C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers
 -I
 C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Atomic
@@ -113,6 +115,8 @@ C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\IrqControl
 C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues
 -I
 C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411
+-I
+C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\DataTransmission
 -I
 C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers
 -I

@@ -150,12 +150,14 @@ main.pbi: \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\mailbox.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\rccregisters.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\rccfieldvalues.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\extiregisters.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\extifieldvalues.hpp \
+  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\nvicregisters.hpp \
+  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\nvicfieldvalues.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\gpioaregisters.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\gpioafieldvalues.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\gpiocregisters.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\gpiocfieldvalues.hpp \
+  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\adccommonregisters.hpp \
+  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\adccommonfieldvalues.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem/Application/Diagnostic/GlobalStatus.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Application\Diagnostic/../../Common\utils.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Application\Diagnostic/../../Rtos/wrapper/criticalsection.hpp \

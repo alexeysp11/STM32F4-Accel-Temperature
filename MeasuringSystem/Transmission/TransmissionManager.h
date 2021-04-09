@@ -25,7 +25,14 @@ public:
      */
     void ConvertToByte(float* measuredData, size_t overallSize);
 private: 
+    // NOTE: probably you need to define buffer array as a private property.  
     UartDriver<Usart2>& m_uartdriver;
+
+    /**
+     * @param reg
+     * @param checksum 
+     */
+    void AddChecksumToHeader(char reg, char checksum); 
 };
 
 #endif //_TRANSMISSIONMANAGER_H

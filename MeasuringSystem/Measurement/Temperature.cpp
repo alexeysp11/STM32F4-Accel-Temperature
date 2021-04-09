@@ -15,7 +15,7 @@
  */
 void Temperature::Measure() 
 {
-    return;
+    value = m_filter.Calculate( m_sensor.Get() ); 
 }
 
 /**
@@ -23,5 +23,5 @@ void Temperature::Measure()
  */
 float Temperature::GetValue() 
 {
-    return 0.0;
+    return value;
 }
