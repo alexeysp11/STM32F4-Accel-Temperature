@@ -13,7 +13,7 @@
 /**
  * @return float
  */
-float TempSensor::Get() 
+float TempSensor::Get() const 
 {
     return ( ((m_ds.Get() * 3.3) / 4096 - V25) / AVG_Slope ) + 25.0;
 }

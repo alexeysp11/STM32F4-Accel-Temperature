@@ -35,7 +35,7 @@ void TransmissionManager::ConvertToByte(float* measuredData, size_t overallSize)
 {
     for (int i = 0; i < overallSize; i++)
     {
-        float value = *(measuredData + i);      // Get measured data. 
+        value.float_variable = *(measuredData + i);      // Get measured data. 
         
         if (i == 0)
         {
@@ -49,6 +49,10 @@ void TransmissionManager::ConvertToByte(float* measuredData, size_t overallSize)
             AddChecksumToHeader(DT_HEAD_TEMP, checksum);
 
             // Write measured data into DT_DATA register. 
+            DT_DATA0_TEMP = value.byte_array[0];
+            DT_DATA1_TEMP = value.byte_array[1];
+            DT_DATA2_TEMP = value.byte_array[2];
+            DT_DATA3_TEMP = value.byte_array[3];
 
             // Calculate CRC for measured data. 
             DT_CRC_TEMP = (DT_DATA0_TEMP + DT_DATA1_TEMP + 
@@ -66,6 +70,10 @@ void TransmissionManager::ConvertToByte(float* measuredData, size_t overallSize)
             AddChecksumToHeader(DT_HEAD_ACCELX, checksum);
 
             // Write measured data into DT_DATA register. 
+            DT_DATA0_ACCELX = value.byte_array[0];
+            DT_DATA1_ACCELX = value.byte_array[1];
+            DT_DATA2_ACCELX = value.byte_array[2];
+            DT_DATA3_ACCELX = value.byte_array[3];
 
             // Calculate CRC for measured data. 
             DT_CRC_ACCELX = (DT_DATA0_ACCELX + DT_DATA1_ACCELX + 
@@ -83,6 +91,10 @@ void TransmissionManager::ConvertToByte(float* measuredData, size_t overallSize)
             AddChecksumToHeader(DT_HEAD_ACCELY, checksum);
 
             // Write measured data into DT_DATA register. 
+            DT_DATA0_ACCELY = value.byte_array[0];
+            DT_DATA1_ACCELY = value.byte_array[1];
+            DT_DATA2_ACCELY = value.byte_array[2];
+            DT_DATA3_ACCELY = value.byte_array[3];
 
             // Calculate CRC for measured data. 
             DT_CRC_ACCELY = (DT_DATA0_ACCELY + DT_DATA1_ACCELY + 
@@ -100,14 +112,22 @@ void TransmissionManager::ConvertToByte(float* measuredData, size_t overallSize)
             AddChecksumToHeader(DT_HEAD_ACCELZ, checksum);
             
             // Write measured data into DT_DATA register. 
+            DT_DATA0_ACCELZ = value.byte_array[0];
+            DT_DATA1_ACCELZ = value.byte_array[1];
+            DT_DATA2_ACCELZ = value.byte_array[2];
+            DT_DATA3_ACCELZ = value.byte_array[3];
 
             // Calculate CRC for measured data. 
             DT_CRC_ACCELZ = (DT_DATA0_ACCELZ + DT_DATA1_ACCELZ + 
                             DT_DATA2_ACCELZ + DT_DATA3_ACCELZ) / 4; 
         }
     }
-
-    m_uartdriver.SendMessage(DT_BUFFER, sizeof(DT_BUFFER)); 
+    
+    /* Pass a size of DT_BUFFER as a parameter explicitly (in this case it's 
+    equal to 24) because if you try to pass it using sizeof(DT_BUFFER) or 
+    something else, the progam will stuck in DummyModule::handler() in an 
+    infinite for(;;) loop.  */
+    m_uartdriver.SendMessage(*DT_BUFFER, 24); 
 }
 
 /**

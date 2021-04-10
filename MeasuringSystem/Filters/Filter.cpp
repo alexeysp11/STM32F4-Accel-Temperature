@@ -16,5 +16,6 @@
  */
 float Filter::Calculate(float values) 
 {
-    return 0.0;
+    oldValue = (values + oldValue) / 2;
+    return oldValue;
 }

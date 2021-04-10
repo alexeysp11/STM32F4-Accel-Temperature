@@ -26,7 +26,7 @@ public:
      */
     void SendMessage(char* data, std::size_t overallSize)
     {
-        assert(size <= size); 
+        assert(overallSize <= size); 
         std::memcpy(buffer.data(), data, size);
         size = overallSize;
         i = 0U;

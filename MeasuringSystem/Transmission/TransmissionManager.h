@@ -25,8 +25,12 @@ public:
      */
     void ConvertToByte(float* measuredData, size_t overallSize);
 private: 
-    // NOTE: probably you need to define buffer array as a private property.  
     UartDriver<Usart2>& m_uartdriver;
+    
+    union {
+        float float_variable;
+        char byte_array[4];
+    } value;
 
     /**
      * @param reg

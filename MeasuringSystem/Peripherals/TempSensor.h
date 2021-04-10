@@ -16,11 +16,11 @@ public:
     /**
      * @param adcDriver
      */
-    TempSensor(AdcDriver adcDriver) : m_ds(adcDriver)
+    explicit TempSensor(AdcDriver& adcDriver) : m_ds(adcDriver)
     {
     }
         
-    float Get();
+    float Get() const;
 private: 
     IDataSource& m_ds;
     float V25 = 0.76f;

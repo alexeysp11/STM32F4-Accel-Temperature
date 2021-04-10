@@ -9,7 +9,7 @@
 #define _DTREGISTERS_H
 
 /*****************************************************
- * Values for registers configuration. 
+ * Values for registers configuration (HEAD register). 
  *****************************************************/        
 
 #define DT_RESET_BYTE       0x00
@@ -59,34 +59,34 @@ inline char DT_DATA2_ACCELZ;
 inline char DT_DATA3_ACCELZ; 
 inline char DT_CRC_ACCELZ;
 
-inline char DT_BUFFER[24] = {
-    DT_HEAD_TEMP,
-    DT_DATA0_TEMP, 
-    DT_DATA1_TEMP, 
-    DT_DATA2_TEMP, 
-    DT_DATA3_TEMP, 
-    DT_CRC_TEMP, 
+inline char* DT_BUFFER[24] = {
+    &DT_HEAD_TEMP,
+    &DT_DATA0_TEMP, 
+    &DT_DATA1_TEMP, 
+    &DT_DATA2_TEMP, 
+    &DT_DATA3_TEMP, 
+    &DT_CRC_TEMP, 
 
-    DT_HEAD_ACCELX, 
-    DT_DATA0_ACCELX, 
-    DT_DATA1_ACCELX, 
-    DT_DATA2_ACCELX, 
-    DT_DATA3_ACCELX, 
-    DT_CRC_ACCELX, 
+    &DT_HEAD_ACCELX, 
+    &DT_DATA0_ACCELX, 
+    &DT_DATA1_ACCELX, 
+    &DT_DATA2_ACCELX, 
+    &DT_DATA3_ACCELX, 
+    &DT_CRC_ACCELX, 
 
-    DT_HEAD_ACCELY, 
-    DT_DATA0_ACCELY, 
-    DT_DATA1_ACCELY, 
-    DT_DATA2_ACCELY, 
-    DT_DATA3_ACCELY, 
-    DT_CRC_ACCELY, 
+    &DT_HEAD_ACCELY, 
+    &DT_DATA0_ACCELY, 
+    &DT_DATA1_ACCELY, 
+    &DT_DATA2_ACCELY, 
+    &DT_DATA3_ACCELY, 
+    &DT_CRC_ACCELY, 
 
-    DT_HEAD_ACCELZ, 
-    DT_DATA0_ACCELZ, 
-    DT_DATA1_ACCELZ, 
-    DT_DATA2_ACCELZ, 
-    DT_DATA3_ACCELZ, 
-    DT_CRC_ACCELZ
+    &DT_HEAD_ACCELZ, 
+    &DT_DATA0_ACCELZ, 
+    &DT_DATA1_ACCELZ, 
+    &DT_DATA2_ACCELZ, 
+    &DT_DATA3_ACCELZ, 
+    &DT_CRC_ACCELZ
 }; 
 
 #endif  // _DTREGISTERS_H

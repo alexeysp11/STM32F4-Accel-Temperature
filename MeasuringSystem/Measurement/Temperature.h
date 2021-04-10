@@ -18,14 +18,14 @@ public:
      * @param sensor
      * @param filter
      */
-    Temperature(TempSensor& sensor, 
+    explicit Temperature(TempSensor& sensor, 
                              IFilter& filter) : m_sensor(sensor), m_filter(filter) 
     {
     }
         
-    void Measure();
+    void Measure() override;
         
-    float GetValue();
+    float GetValue() override;
 private: 
     TempSensor& m_sensor;
     IFilter& m_filter;

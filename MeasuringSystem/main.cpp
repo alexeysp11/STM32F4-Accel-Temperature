@@ -46,7 +46,7 @@
 // assign SystemCoreClock (from port.s file). 
 std::uint32_t SystemCoreClock = 16'000'000U;    
 
-constexpr std::uint32_t UartSpeed19200 = std::uint32_t(8'000'000U / 19'200U);
+constexpr std::uint32_t UartSpeed19200 = std::uint32_t(16'000'000U / 19'200U);
 
 extern "C" {
   int __low_level_init(void)
@@ -99,7 +99,6 @@ extern "C" {
     ADC1::SQR1::L::Conversions1::Set();
     ADC1::SMPR1::SMP18::Cycles84::Set();
     ADC1::CR2::ADON::Enable::Set();
-
     GPIOA::MODER::MODER0::Analog::Set();
 
     return 1;

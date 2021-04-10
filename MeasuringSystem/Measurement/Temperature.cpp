@@ -3,7 +3,7 @@
  */
 
 
-#include "Temperature.h"
+#include "Temperature.h"        // for Temperature class definition. 
 
 /**
  * Temperature implementation

@@ -16,6 +16,8 @@ public:
      * @param values
      */
     float Calculate(float values) override;
+private:
+    float oldValue = 0.0f;
 };
 
 #endif //_FILTER_H
