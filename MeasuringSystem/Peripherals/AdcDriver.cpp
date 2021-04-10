@@ -15,5 +15,6 @@
  */
 float AdcDriver::Get() 
 {
-    return 0.0;
+    m_adc.Convert();
+    return m_adc.Get();
 }

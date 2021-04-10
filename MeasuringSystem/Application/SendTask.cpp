@@ -24,7 +24,7 @@ void SendTask::Execute()
         Sleep( std::chrono::milliseconds(100ms) );
           
         // Get measured values from MeasureTask. 
-        float* data = m_measuring.GetData(); 
+        float* data = m_measuring.GetData();
         
         // Invoke UartDriver class and pass references to measured data.
         m_tm.ConvertToByte(data, sizeof(*data));

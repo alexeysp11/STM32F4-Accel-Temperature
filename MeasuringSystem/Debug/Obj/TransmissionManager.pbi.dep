@@ -88,4 +88,6 @@ TransmissionManager.pbi: \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registertype.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\register.hpp \
   C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp
+  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp \
+  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\DataTransmission\dtregisters.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\iostream

@@ -13,8 +13,6 @@ public:
      * @param value
      */
     virtual float Calculate(float value) = 0;
-private: 
-    float oldValue;
 };
 
 #endif //_IFILTER_H

@@ -26,7 +26,7 @@ public:
      */
     void SendMessage(char* data, std::size_t overallSize)
     {
-        assert(size <= size); 
+        assert(overallSize <= size); 
         std::memcpy(buffer.data(), data, size);
         size = overallSize;
         i = 0U;
@@ -51,8 +51,8 @@ public:
     }
 private: 
     std::size_t i = 0U;
-    std::size_t size = 16U; 
-    std::array<char, 255> buffer;
+    std::size_t size = 24U; 
+    std::array<char, 24U> buffer;
 };
 
 #endif //_UARTDRIVER_H

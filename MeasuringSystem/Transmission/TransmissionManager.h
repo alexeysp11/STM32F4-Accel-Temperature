@@ -26,6 +26,17 @@ public:
     void ConvertToByte(float* measuredData, size_t overallSize);
 private: 
     UartDriver<Usart2>& m_uartdriver;
+    
+    union {
+        float float_variable;
+        char byte_array[4];
+    } value;
+
+    /**
+     * @param reg
+     * @param checksum 
+     */
+    void AddChecksumToHeader(char reg, char checksum); 
 };
 
 #endif //_TRANSMISSIONMANAGER_H
