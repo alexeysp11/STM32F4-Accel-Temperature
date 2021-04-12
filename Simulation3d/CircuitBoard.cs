@@ -32,44 +32,42 @@ namespace Simulation3d
     public class CircuitBoard 
     {
         #region Members
-
         private Angle _Angle; 
         private Acceleration _Accel; 
-
         #endregion  // Members
 
-
         #region Properties 
-
         private float Temperature = 0.0f; 
-
         #endregion  // Properties
 
-
         #region Constructor
-
         public CircuitBoard()
         {
             _Angle.X = 0; 
             _Angle.Y = 0; 
             _Angle.Z = 0; 
         }
-
         #endregion  // Constructor
 
-
-        #region Methods 
-
+        #region Temperature methods 
+        /// <summary>
+        /// . 
+        /// </summary>
         public float GetTemperature()
         {
             return Temperature; 
         }
 
+        /// <summary>
+        /// . 
+        /// </summary>
         public void SetTemperature(float temp)
         {
             this.Temperature = temp; 
         }
+        #endregion  // Temperature methods
 
+        #region Rotation methods 
         /// <returns>
         /// An instance of Angle struct. 
         /// </returns>
@@ -129,7 +127,9 @@ namespace Simulation3d
                 _Angle.Z += 360; 
             }
         }
+        #endregion  // Rotation methods
 
+        #region Acceleration methods 
         /// <summary>
         /// Gets values of acceleration along each of 3 axis. 
         /// </summary>
@@ -200,7 +200,6 @@ namespace Simulation3d
                 _Accel.Z += 1;
             }
         }
-
-        #endregion  // Methods
+        #endregion  // Acceleration methods
     }
 }

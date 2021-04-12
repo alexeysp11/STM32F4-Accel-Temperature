@@ -10,20 +10,26 @@ namespace Simulation3d
     public partial class MainWindow : Window
     {
         #region Members
-        
         private CircuitBoard _CurcuitBoard = null; 
         private ComPort _ComPort = null; 
-        System.Windows.Threading.DispatcherTimer updateLabelsTimer = null; 
-        System.Windows.Threading.DispatcherTimer clearInfoLabelTimer = null; 
-        Angle angle;
-        Acceleration accel;
-        float temperature;
-
+        private System.Windows.Threading.DispatcherTimer updateLabelsTimer = null; 
+        private System.Windows.Threading.DispatcherTimer clearInfoLabelTimer = null; 
+        private Angle angle;
+        private Acceleration accel;
         #endregion  // Members
 
+        #region Properties
+        /// <summary>
+        /// Measured temperature. 
+        /// </summary>
+        private float temperature;
+        /// <summary>
+        /// Allows to handle if it's simulation mode or measuring mode. 
+        /// </summary>
+        private bool IsSimalation = true; 
+        #endregion  // Properties
 
         #region Constructors
-
         public MainWindow()
         {
             InitializeComponent();
@@ -74,12 +80,9 @@ namespace Simulation3d
 
             myCanvas.Focus();
         }
-
         #endregion  // Constructors
 
-
         #region UI buttons handling
-
         /// <summary>
         /// If Refresh button was pressed, get all available COM-ports.  
         /// </summary>
@@ -91,7 +94,7 @@ namespace Simulation3d
                 // Not to copy one COM port multiple times. 
                 ComPortsComboBox.Items.Clear();
 
-                // `ComPort.Ports` is hte array of COM ports. 
+                // `ComPort.Ports` is the array of COM ports. 
                 string[] arrayOfPorts = ComPort.Ports;
 
                 // Create new instances of COM ports. 
@@ -149,12 +152,9 @@ namespace Simulation3d
                 }
             }
         }
-        
         #endregion  // UI buttons handling
 
-
         #region Keyboard handling
-
         /// <summary>
         /// If user pressed some key. 
         /// </summary>
@@ -229,7 +229,6 @@ namespace Simulation3d
 
             myCanvas.Focus();
         }
-
         #endregion  // Keyboard handling
     }
 }

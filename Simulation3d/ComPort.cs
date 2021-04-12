@@ -12,15 +12,13 @@ namespace Simulation3d
     class ComPort
     {
         #region Members
-
         /// <summary>
         /// An instance of `SerialPort` class. 
         /// </summary>
         protected SerialPort comPort = null;    
         /// <summary>
-        /// An instance of `FlowDocument` class. 
+        /// An instance of `Label` to display message. 
         /// </summary>
-        protected FlowDocument _fd = null;          // Used for being able to dynamically adjust and reflow the content.
         protected Label _InfoLabel = null; 
         /// <summary>
         /// Represents the System.Object type, which is the root type in the C# class hierarchy. 
@@ -32,60 +30,28 @@ namespace Simulation3d
         /// from this class. 
         /// </summary>
         private CircuitBoard _CurcuitBoard = null; 
-
         #endregion  // Members
 
-
         #region Properties
-
         /// <summary>
         /// Public static field of string elements that represent COM-port. 
         /// </summary>
         public static string[] Ports { get { return SerialPort.GetPortNames(); } }
-
         /// <summary>
         /// Stores boolean value that represents if COM-port is connected or not. 
         /// </summary>
         public bool IsConnected { get; private set; }
-
         /// <summary>
         /// Size of a packet for getting one floating point value via 
         /// data transmission. 
         /// </summary>
-        public static int PacketSize = 6; 
-
+        private static int PacketSize = 6; 
         #endregion  // Properties
 
-
         #region Constructors
-
         /// <summary>
-        /// Constructor of class `ComPort` that creates an object of `SerialPort` class. 
-        /// </summary>
-        public ComPort(FlowDocument fd)
-        {
-            // Assign `comPort` as an object of `SerialPort` class. 
-            comPort = new SerialPort();
-
-            // Assign `FlowDocument` element. 
-            _fd = fd;
-
-            /* Event `System.IO.Ports.SerialPort.DataReceived` indicates
-            that data has been received through a port represented 
-            by the SerialPort object. 
-            Delegate `SerialDataReceivedEventHandler` represents the method 
-            that will handle the DataReceived event of a SerialPort object. */
-            comPort.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-            
-            /* Assign `Obj` as object of class `System.Object` for using it in `lock`
-            statements. */
-            Obj = new object();
-
-            IsConnected = false; 
-        }
-
-        /// <summary>
-        /// Constructor of class `ComPort` that creates an object of `SerialPort` class. 
+        /// Constructor of class `ComPort` that creates an object of 
+        /// `SerialPort` class. 
         /// </summary>
         public ComPort(Label InfoLabel, ref CircuitBoard board)
         {
@@ -109,12 +75,9 @@ namespace Simulation3d
 
             IsConnected = false; 
         }
-
         #endregion  // Constructors
 
-
-        #region Configuration
-
+        #region Port configuration
         /// <summary>
         /// COM port configuration. 
         /// </summary>
@@ -215,12 +178,9 @@ namespace Simulation3d
                 return false;
             }
         }
-
-        #endregion  // Configuration
-
+        #endregion  // Port configuration
 
         #region DataTransmission 
-        
         /// <summary>
         /// Sends a message via COM-port. 
         /// </summary>
@@ -246,7 +206,6 @@ namespace Simulation3d
             catch (Exception ex)
             {
                 GraphWPF.Exceptions.DisplayException(ex);
-                //System.Windows.MessageBox.Show("ERROR: " + ex.Message);
             }
         }
 
@@ -276,8 +235,6 @@ namespace Simulation3d
                     // Get 2 bytes of data. 
                     // Compare CRC. 
                     this.DecodeMeasuredData(comBuffer); 
-
-                    //this.DisplayData(Brushes.Green, ByteToHex(comBuffer));
                 }
             }
             catch (System.Exception ex)
@@ -285,12 +242,9 @@ namespace Simulation3d
                 GraphWPF.Exceptions.DisplayException(ex); 
             }
         }
-
         #endregion  // DataTransmission
 
-
         #region DataProcessing
-
         /// <summary>
         /// Converts hex to byte. 
         /// </summary>
@@ -377,31 +331,18 @@ namespace Simulation3d
                     }
                 }
             }
-            
+
             this.DisplayData(Brushes.Green, message);
         }
-
         #endregion  // DataProcessing
 
         #region Display 
-
         /// <summary> 
         /// This method is invoked by almost every method of this class
         /// in order to display some information into `FlowDocument`. 
         /// </summary> 
         protected void DisplayData(Brush color, string msg)
         {
-            if (_fd != null)
-            {
-                _fd.Dispatcher.BeginInvoke(
-                    new Action(() =>
-                    {
-                        Paragraph pg = new Paragraph();
-                        pg.Inlines.Add(msg);
-                        pg.Foreground = color;
-                        _fd.Blocks.Add(pg);
-                }));
-            }
             if (_InfoLabel != null)
             {
                 _InfoLabel.Dispatcher.Invoke(() => {
@@ -411,7 +352,6 @@ namespace Simulation3d
                 });
             }
         }
-
         #endregion  // Display
     }
 }
