@@ -1,3 +1,4 @@
+.vs
 .vscode
 
 # Unfinished docs 
@@ -13,4 +14,3 @@ Docs/TextDocs
 Snippets
 CortexLib
 Tools
-Simulation3d.sln

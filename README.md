@@ -34,7 +34,7 @@ Dependencies for `Simulation3d`:
 
 In order to perform both parallel measurements using two sensors (accelerometer and embedded temperature sensor) and sending all measured data via **USART**, FreeRTOS wrapper written in `C++` is used. 
 
-Code from [this repository]() was used as an example of the wrapper. 
+Code from [this repository](https://github.com/lamer0k/RtosWrapper) was used as an example of the wrapper. 
 
 [Here](MeasuringSystem/README.adoc) you can read desciption on how the FreeRTOS wrapper is used in this particular application. 
 
@@ -55,9 +55,7 @@ git clone https://github.com/alexeysp11/Stm32Project
 
 Then just open main directory using any text editor and just edit code. 
 
-<!--
-In order to open `Simulation3d` application with Visual Studio, just open `Simulation3d.sln` solution. 
--->
+In order to open `Simulation3d` application with Visual Studio, just open `Simulation3d.sln` solution by double click. 
 
 If you want to edit code for `MeasuringSystem`, just open the *MeasuringSystem* directory in the JetBrains Clion. 
 Or if you use IAR 8.40.2, open the `test.eww` workspace or `iarproject.ewp` project.
