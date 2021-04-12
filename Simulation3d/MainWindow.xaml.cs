@@ -29,6 +29,7 @@ namespace Simulation3d
         System.Windows.Threading.DispatcherTimer clearInfoLabelTimer = null; 
         Angle angle;
         Acceleration accel;
+        float temperature;
 
         #endregion  // Members
 
@@ -40,22 +41,25 @@ namespace Simulation3d
             InitializeComponent();
 
             _CurcuitBoard = new CircuitBoard();
-            _ComPort = new ComPort(InfoLabel);
+            _ComPort = new ComPort(InfoLabel, ref _CurcuitBoard);
             
-            angle = _CurcuitBoard.GetRotation();
-            accel = _CurcuitBoard.GetAcceleration();
+            this.angle = _CurcuitBoard.GetRotation();
+            this.accel = _CurcuitBoard.GetAcceleration();
+            this.temperature = _CurcuitBoard.GetTemperature(); 
 
             updateLabelsTimer = new System.Windows.Threading.DispatcherTimer();
             updateLabelsTimer.Tick += (sender, args) => {
                 AngleX.Content = $"{angle.X}"; 
                 AngleY.Content = $"{angle.Y}"; 
                 AngleZ.Content = $"{angle.Z}";
+                TemperatureLabel.Content = $"{temperature}"; 
 
                 // Adjust acceleration because acceleration cannot be the same
                 // if the state of a real life object does not change. 
                 _CurcuitBoard.AdjustAcceleration();
                 this.accel = _CurcuitBoard.GetAcceleration();
                 this.angle = _CurcuitBoard.GetRotation();
+                this.temperature = _CurcuitBoard.GetTemperature(); 
 
                 // Rotate 3D model. 
                 Model3dRotateAngleX.Angle = this.angle.X;
@@ -65,6 +69,7 @@ namespace Simulation3d
                 AccelX.Content = $"{accel.X}";
                 AccelY.Content = $"{accel.Y}";
                 AccelZ.Content = $"{accel.Z}";
+                TemperatureLabel.Content = $"{temperature}"; 
             }; 
             updateLabelsTimer.Interval = TimeSpan.FromSeconds(0.1);
 
@@ -225,12 +230,12 @@ namespace Simulation3d
             }
             else if (e.Key == Key.C)    // Up (acceleration). 
             {
-                _CurcuitBoard.SetAcceleration(0, 5, 0);
+                _CurcuitBoard.SetAcceleration(0, 0, 5);
                 this.accel = _CurcuitBoard.GetAcceleration();
             }
             else if (e.Key == Key.V)    // Down (acceleration). 
             {
-                _CurcuitBoard.SetAcceleration(0, -5, 0);
+                _CurcuitBoard.SetAcceleration(0, 0, -5);
                 this.accel = _CurcuitBoard.GetAcceleration();
             }
 

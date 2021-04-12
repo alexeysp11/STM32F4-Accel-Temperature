@@ -27,20 +27,16 @@ namespace Simulation3d
         /// Used when there's no way to identify the object type at compile time. 
         /// </summary>
         private object Obj;
+        /// <summary>
+        /// An instance of CircuitBoard that helps to change its state directly 
+        /// from this class. 
+        /// </summary>
+        private CircuitBoard _CurcuitBoard = null; 
 
         #endregion  // Members
 
 
         #region Properties
-
-        /// <summary>
-        /// Codes (ASCII HEX) for getting which sensor sent data. 
-        /// </summary>
-        public enum SensorNames
-        {
-            Accelerometer = 41, 
-            TermalSensor = 54
-        }
 
         /// <summary>
         /// Public static field of string elements that represent COM-port. 
@@ -51,6 +47,12 @@ namespace Simulation3d
         /// Stores boolean value that represents if COM-port is connected or not. 
         /// </summary>
         public bool IsConnected { get; private set; }
+
+        /// <summary>
+        /// Size of a packet for getting one floating point value via 
+        /// data transmission. 
+        /// </summary>
+        public static int PacketSize = 6; 
 
         #endregion  // Properties
 
@@ -85,10 +87,11 @@ namespace Simulation3d
         /// <summary>
         /// Constructor of class `ComPort` that creates an object of `SerialPort` class. 
         /// </summary>
-        public ComPort(Label InfoLabel)
+        public ComPort(Label InfoLabel, ref CircuitBoard board)
         {
             // Assign `comPort` as an object of `SerialPort` class. 
             comPort = new SerialPort();
+            _CurcuitBoard = board;
 
             // Assign `Label` element. 
             _InfoLabel = InfoLabel;
@@ -123,7 +126,7 @@ namespace Simulation3d
         /// Thrown when unable to convert passed parameters in order to 
         /// configure COM port. 
         /// </exception>
-        public void Config(string portName, string baudRate="9600", 
+        public void Config(string portName, string baudRate="19200", 
             string parity="None", string stopBits="1")
         {
             /* Get a value indicating the open or closed status of the 
@@ -216,7 +219,7 @@ namespace Simulation3d
         #endregion  // Configuration
 
 
-        #region TrasmitReceiveDisplay 
+        #region DataTransmission 
         
         /// <summary>
         /// Sends a message via COM-port. 
@@ -267,7 +270,14 @@ namespace Simulation3d
                     int bytes = comPort.BytesToRead;
                     byte[] comBuffer = new byte[bytes];
                     comPort.Read(comBuffer, 0, bytes);
-                    DisplayData(Brushes.Green, ByteToHex(comBuffer));
+
+                    // Unpack receiced message. 
+                    // Get which sensor sent data (if none of sensor sent, ignore message because it's a noise). 
+                    // Get 2 bytes of data. 
+                    // Compare CRC. 
+                    this.DecodeMeasuredData(comBuffer); 
+
+                    //this.DisplayData(Brushes.Green, ByteToHex(comBuffer));
                 }
             }
             catch (System.Exception ex)
@@ -276,42 +286,10 @@ namespace Simulation3d
             }
         }
 
-        /// <summary> 
-        /// This method is invoked by almost every method of this class
-        /// in order to display some information into `FlowDocument`. 
-        /// </summary> 
-        protected void DisplayData(Brush color, string msg)
-        {
-            if (_fd != null)
-            {
-                _fd.Dispatcher.BeginInvoke(
-                    new Action(() =>
-                    {
-                        Paragraph pg = new Paragraph();
-                        pg.Inlines.Add(msg);
-                        pg.Foreground = color;
-                        _fd.Blocks.Add(pg);
-                }));
-            }
-            if (_InfoLabel != null)
-            {
-                _InfoLabel.Dispatcher.Invoke(() => {
-                    // Unpack receiced message. 
-                    // Get which sensor sent data (if none of sensor sent, ignore message because it's a noise). 
-                    // Get 2 bytes of data. 
-                    // Compare CRC. 
-
-                    // Change content of the label. 
-                    _InfoLabel.Content = msg; 
-                    _InfoLabel.Foreground = color; 
-                });
-            }
-        }
-
-        #endregion  // TrasmitReceiveDisplay
+        #endregion  // DataTransmission
 
 
-        #region Conversions
+        #region DataProcessing
 
         /// <summary>
         /// Converts hex to byte. 
@@ -345,6 +323,95 @@ namespace Simulation3d
             return builder.ToString().ToUpper();
         }
 
-        #endregion  // Conversions
+        /// <summary>
+        /// Decodes measured data such as temperature and relative 
+        /// accelerations. 
+        /// 
+        /// When you decode a message, just set these parameters into 
+        /// Angle and Acceleration structures. 
+        /// </summary>
+        private void DecodeMeasuredData(byte[] comByte)
+        {
+            // Bytes for sensor decoding (see dtregisters.h). 
+            byte TempSensor     = 0b00000000 | 0b00000100; 
+            byte AccelerometerX = 0b10000000 | 0b00100000; 
+            byte AccelerometerY = 0b10000000 | 0b00010000; 
+            byte AccelerometerZ = 0b10000000 | 0b00001000; 
+
+            string message = ""; 
+
+            for (int i = 0; i < comByte.Length; i++)
+            {
+                /* Size of a packet is 6 bytes in the MeasuringSystem, 
+                so sensor index is every 6th. */ 
+                if (i % PacketSize == 0)     // Get what sensor sent data. 
+                {
+                    if (comByte[i] == TempSensor)
+                    {
+                        message += "Temperature: ";
+                        float value = System.BitConverter.ToSingle(comByte, i+1);     // Get 4 bytes. 
+                        _CurcuitBoard.SetTemperature(value);
+                        message += $"{value}"; 
+                        message += $"{comByte[i+5]}"; 
+                    }
+                    else if (comByte[i] == AccelerometerX)
+                    {
+                        message += "AccelX: ";
+                        float value = System.BitConverter.ToSingle(comByte, i+1);     // Get 4 bytes. 
+                        message += $"{value}"; 
+                        message += $"{comByte[i+5]}"; 
+                    }
+                    else if (comByte[i] == AccelerometerY)
+                    {
+                        message += "AccelY: ";
+                        float value = System.BitConverter.ToSingle(comByte, i+1);     // Get 4 bytes. 
+                        message += $"{value}"; 
+                        message += $"{comByte[i+5]}"; 
+                    }
+                    else if (comByte[i] == AccelerometerZ)
+                    {
+                        message += "AccelZ: ";
+                        float value = System.BitConverter.ToSingle(comByte, i+1);     // Get 4 bytes. 
+                        message += $"{value}"; 
+                        message += $"{comByte[i+5]}"; 
+                    }
+                }
+            }
+            
+            this.DisplayData(Brushes.Green, message);
+        }
+
+        #endregion  // DataProcessing
+
+        #region Display 
+
+        /// <summary> 
+        /// This method is invoked by almost every method of this class
+        /// in order to display some information into `FlowDocument`. 
+        /// </summary> 
+        protected void DisplayData(Brush color, string msg)
+        {
+            if (_fd != null)
+            {
+                _fd.Dispatcher.BeginInvoke(
+                    new Action(() =>
+                    {
+                        Paragraph pg = new Paragraph();
+                        pg.Inlines.Add(msg);
+                        pg.Foreground = color;
+                        _fd.Blocks.Add(pg);
+                }));
+            }
+            if (_InfoLabel != null)
+            {
+                _InfoLabel.Dispatcher.Invoke(() => {
+                    // Change content of the label. 
+                    _InfoLabel.Content = msg; 
+                    _InfoLabel.Foreground = color; 
+                });
+            }
+        }
+
+        #endregion  // Display
     }
 }

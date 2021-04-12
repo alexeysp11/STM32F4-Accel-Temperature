@@ -39,6 +39,13 @@ namespace Simulation3d
         #endregion  // Members
 
 
+        #region Properties 
+
+        private float Temperature = 0.0f; 
+
+        #endregion  // Properties
+
+
         #region Constructor
 
         public CircuitBoard()
@@ -52,6 +59,16 @@ namespace Simulation3d
 
 
         #region Methods 
+
+        public float GetTemperature()
+        {
+            return Temperature; 
+        }
+
+        public void SetTemperature(float temp)
+        {
+            this.Temperature = temp; 
+        }
 
         /// <returns>
         /// An instance of Angle struct. 
