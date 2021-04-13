@@ -12,9 +12,22 @@ namespace Simulation3d
         #region Members
         private CircuitBoard _CurcuitBoard = null; 
         private ComPort _ComPort = null; 
+        /// <summary>
+        /// This timer is used for updating labels for displaying rotation
+        /// angle, acceleration and temperature in the current moment. 
+        /// </summary>
         private System.Windows.Threading.DispatcherTimer updateLabelsTimer = null; 
+        /// <summary>
+        /// This timer is used to timely clear InfoLabel (notification label). 
+        /// </summary>
         private System.Windows.Threading.DispatcherTimer clearInfoLabelTimer = null; 
+        /// <summary>
+        /// Structure for storing values of rotation angle (X, Y and Z). 
+        /// </summary>
         private Angle angle;
+        /// <summary>
+        /// Structure for storing values of relative accelerations (X, Y and Z). 
+        /// </summary>
         private Acceleration accel;
         #endregion  // Members
 
@@ -36,21 +49,16 @@ namespace Simulation3d
 
             _CurcuitBoard = new CircuitBoard();
             _ComPort = new ComPort(InfoLabel, ref _CurcuitBoard);
-            
-            this.angle = _CurcuitBoard.GetRotation();
-            this.accel = _CurcuitBoard.GetAcceleration();
-            this.temperature = _CurcuitBoard.GetTemperature(); 
 
+            // updateLabelsTimer starts when window is loaded and updates 
+            // every 100 ms. 
             updateLabelsTimer = new System.Windows.Threading.DispatcherTimer();
             updateLabelsTimer.Tick += (sender, args) => {
-                AngleX.Content = $"{angle.X}"; 
-                AngleY.Content = $"{angle.Y}"; 
-                AngleZ.Content = $"{angle.Z}";
-                TemperatureLabel.Content = $"{temperature}"; 
-
                 // Adjust acceleration because acceleration cannot be the same
-                // if the state of a real life object does not change. 
+                // if the state of a real life object does not change.
                 _CurcuitBoard.AdjustAcceleration();
+                
+                // Get acceleration, rotation angle and temperature. 
                 this.accel = _CurcuitBoard.GetAcceleration();
                 this.angle = _CurcuitBoard.GetRotation();
                 this.temperature = _CurcuitBoard.GetTemperature(); 
@@ -60,13 +68,23 @@ namespace Simulation3d
                 Model3dRotateAngleY.Angle = this.angle.Y;
                 Model3dRotateAngleZ.Angle = this.angle.Z;
 
-                AccelX.Content = $"{accel.X}";
-                AccelY.Content = $"{accel.Y}";
+                // Display rotation angle. 
+                AngleX.Content = $"{angle.X}"; 
+                AngleY.Content = $"{angle.Y}"; 
+                AngleZ.Content = $"{angle.Z}";
+                
+                // Display acceleration. 
+                AccelX.Content = $"{accel.X}"; 
+                AccelY.Content = $"{accel.Y}"; 
                 AccelZ.Content = $"{accel.Z}";
+                
+                // Display temperature. 
                 TemperatureLabel.Content = $"{temperature}"; 
             }; 
             updateLabelsTimer.Interval = TimeSpan.FromSeconds(0.1);
 
+            // Clear InfoLabel after 5 seconds when user clicked on Connect
+            // or Disconnect, then it stops. 
             clearInfoLabelTimer = new System.Windows.Threading.DispatcherTimer();
             clearInfoLabelTimer.Tick += (sender, args) => {
                 InfoLabel.Content = ""; 
@@ -75,7 +93,7 @@ namespace Simulation3d
             clearInfoLabelTimer.Interval = TimeSpan.FromSeconds(3);
 
             Loaded += (sender, args) => {
-                updateLabelsTimer.Start(); 
+                updateLabelsTimer.Start();  // Start updating notifications. 
             };
 
             myCanvas.Focus();
@@ -88,6 +106,12 @@ namespace Simulation3d
         /// </summary>
         private void RefreshBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (this.IsSimalation)  // Do nothing if it's a simualtion mode. 
+            {
+                System.Windows.MessageBox.Show("Unable to refresh COM-ports in simulation mode.");
+                return; 
+            }
+
             // Refresh only when COM-port is not connected. 
             if (!_ComPort.IsConnected)
             {
@@ -119,7 +143,13 @@ namespace Simulation3d
         /// </exception>
         private void ConnectDisconnectBtn_Click(object sender, RoutedEventArgs e)
         {
-            clearInfoLabelTimer.Start();
+            if (this.IsSimalation)  // Do nothing if it's a simualtion mode. 
+            {
+                System.Windows.MessageBox.Show("Unable to connect COM-ports in simulation mode.");
+                return; 
+            }
+
+            clearInfoLabelTimer.Start();    // Start timer for updating labels. 
 
             if (_ComPort.IsConnected)
             {
@@ -160,6 +190,21 @@ namespace Simulation3d
         /// </summary>
         private void KeyUp_Handling(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.M)         // Change mode (from simulation to measuring and vica versa). 
+            {
+                this.IsSimalation = !this.IsSimalation;
+            }
+
+            if (this.IsSimalation)
+            {
+                ModeLabel.Content = "MODE: simulation"; 
+            }
+            else
+            {
+                ModeLabel.Content = "MODE: measurements"; 
+                return; 
+            }
+
             if (e.Key == Key.E)         // Rotation around X axis.
             {
                 _CurcuitBoard.SetRotation(5, 0, 0); 

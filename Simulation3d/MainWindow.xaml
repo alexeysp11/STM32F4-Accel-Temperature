@@ -83,6 +83,8 @@
             
             <Label Name="InfoLabel" HorizontalAlignment="Left" Margin="150,15" VerticalAlignment="Top" Foreground="Black" Height="25" Width="300" />
             
+            <Label Name="ModeLabel" Content="MODE: simulation" HorizontalAlignment="Left" Margin="150,300" VerticalAlignment="Top" Foreground="Black" Height="25" Width="300" />
+
             <!--UART configuration area.-->
             <Button Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" Margin="10,165" VerticalAlignment="Top" Foreground="Black" Height="25" Width="60" Click="RefreshBtn_Click" />
             <Button Name="ConnectDisconnectBtn" Content="Connect" HorizontalAlignment="Left" Margin="75,165" VerticalAlignment="Top" Foreground="Black" Height="25" Width="60" Click="ConnectDisconnectBtn_Click" />

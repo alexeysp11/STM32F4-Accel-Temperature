@@ -53,6 +53,12 @@ namespace Simulation3d
         /// Constructor of class `ComPort` that creates an object of 
         /// `SerialPort` class. 
         /// </summary>
+        /// <param name="InfoLabel">
+        /// Notification label where to display messages.
+        /// </param>
+        /// <param name="board">
+        /// Instance of CircuitBoard (passed by reference).
+        /// </param>
         public ComPort(Label InfoLabel, ref CircuitBoard board)
         {
             // Assign `comPort` as an object of `SerialPort` class. 
@@ -159,6 +165,10 @@ namespace Simulation3d
         /// This method is invoked by `ComPort.Config` method in order 
         /// to close serial port. 
         /// </summary>
+        /// <returns>
+        /// true if serial port has been closed, false if serial port has not 
+        /// been closed. 
+        /// </returns>
         /// <exception cref="System.Exception">
         /// Thrown when .
         /// </exception>
@@ -184,6 +194,7 @@ namespace Simulation3d
         /// <summary>
         /// Sends a message via COM-port. 
         /// </summary>
+        /// <param name="msg">Message to be sent via serial port.</param>
         /// <exception cref="System.Exception">
         /// Thrown when .
         /// </exception>
@@ -248,6 +259,8 @@ namespace Simulation3d
         /// <summary>
         /// Converts hex to byte. 
         /// </summary>
+        /// <param name="msg">Message to be converted into bytes.</param>
+        /// <returns>Array of bytes.</returns>
         public byte[] HexToByte(string msg)
         {
             msg = msg.Replace(" ", "");
@@ -264,6 +277,8 @@ namespace Simulation3d
         /// <summary>
         /// Converts byte to hex. 
         /// </summary>
+        /// <param name="comByte">Array of bytes.</param>
+        /// <returns>String of HEX.</returns>
         public string ByteToHex(byte[] comByte)
         {
             var builder = new System.Text.StringBuilder(comByte.Length * 3);
@@ -280,10 +295,12 @@ namespace Simulation3d
         /// <summary>
         /// Decodes measured data such as temperature and relative 
         /// accelerations. 
-        /// 
+        /// </summary>
+        /// <remarks>
         /// When you decode a message, just set these parameters into 
         /// Angle and Acceleration structures. 
-        /// </summary>
+        /// </remarks>
+        /// <param name="comByte">Array of bytes.</param>
         private void DecodeMeasuredData(byte[] comByte)
         {
             // Bytes for sensor decoding (see dtregisters.h). 
@@ -340,7 +357,9 @@ namespace Simulation3d
         /// <summary> 
         /// This method is invoked by almost every method of this class
         /// in order to display some information into `FlowDocument`. 
-        /// </summary> 
+        /// </summary>
+        /// <param name="color">Foreground color for message.</param>
+        /// <param name="msg">Message to be displayed.</param>
         protected void DisplayData(Brush color, string msg)
         {
             if (_InfoLabel != null)

@@ -43,24 +43,30 @@ namespace Simulation3d
         #region Constructor
         public CircuitBoard()
         {
-            _Angle.X = 0; 
-            _Angle.Y = 0; 
-            _Angle.Z = 0; 
+            _Angle.X = 0.0f; 
+            _Angle.Y = 0.0f; 
+            _Angle.Z = 0.0f; 
         }
         #endregion  // Constructor
 
         #region Temperature methods 
         /// <summary>
-        /// . 
+        /// Gets current temperature. 
         /// </summary>
+        /// <returns>
+        /// Temperature in the current moment (floating point number). 
+        /// </returns>
         public float GetTemperature()
         {
             return Temperature; 
         }
 
         /// <summary>
-        /// . 
+        /// Sets current temperature. 
         /// </summary>
+        /// <param name="temp">
+        /// Temperature in the current moment (floating point number). 
+        /// </param>
         public void SetTemperature(float temp)
         {
             this.Temperature = temp; 
