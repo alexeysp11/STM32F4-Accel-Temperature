@@ -237,14 +237,10 @@ namespace Simulation3d
                 until you finish to receive data completely. */
                 lock (Obj)
                 {
-                    int bytes = comPort.BytesToRead;
-                    byte[] comBuffer = new byte[bytes];
-                    comPort.Read(comBuffer, 0, bytes);
+                    byte[] comBuffer = new byte[24];
+                    comPort.Read(comBuffer, 0, comBuffer.Length);
 
                     // Unpack receiced message. 
-                    // Get which sensor sent data (if none of sensor sent, ignore message because it's a noise). 
-                    // Get 2 bytes of data. 
-                    // Compare CRC. 
                     this.DecodeMeasuredData(comBuffer); 
                 }
             }
