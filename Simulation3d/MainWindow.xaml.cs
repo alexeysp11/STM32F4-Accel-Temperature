@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Simulation3d
@@ -10,7 +11,13 @@ namespace Simulation3d
     public partial class MainWindow : Window
     {
         #region Members
+        /// <summary>
+        /// Instance that stores all values measured by MCU. 
+        /// </summary>
         private CircuitBoard _CurcuitBoard = null; 
+        /// <summary>
+        /// Instance that implements serial port. 
+        /// </summary>
         private ComPort _ComPort = null; 
         /// <summary>
         /// This timer is used for updating labels for displaying rotation
@@ -40,6 +47,11 @@ namespace Simulation3d
         /// Allows to handle if it's simulation mode or measuring mode. 
         /// </summary>
         private bool IsSimalation = true; 
+        /// <summary>
+        /// Variable that stores name of connected COM-port for preventing 
+        /// change of COM-port while it's connected. 
+        /// </summary>
+        private string ComPortText = null; 
         #endregion  // Properties
 
         #region Constructors
@@ -134,6 +146,24 @@ namespace Simulation3d
         }
 
         /// <summary>
+        /// Disable DropDown when COM-port is already selected, and enable 
+        /// DropDown when COM-port is not selected. 
+        /// </summary>
+        private void ComPortsComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+
+            if (this.ComPortText == null)
+            {
+                cb.IsDropDownOpen = true;
+            }
+            else
+            {
+                cb.IsDropDownOpen = false;
+            }
+        }
+
+        /// <summary>
         /// Connects or disconnects selected COM-port and changes content of 
         /// a button that was pressed (from `Connect` to `Disconnect` and 
         /// vica versa). 
@@ -143,7 +173,7 @@ namespace Simulation3d
         /// </exception>
         private void ConnectDisconnectBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (this.IsSimalation)  // Do nothing if it's a simualtion mode. 
+            if (this.IsSimalation)  // Do nothing if it's a simulation mode. 
             {
                 System.Windows.MessageBox.Show("Unable to connect COM-ports in simulation mode.");
                 return; 
@@ -156,6 +186,7 @@ namespace Simulation3d
                 try
                 {
                     _ComPort.Close();
+                    this.ComPortText = null; 
                     ConnectDisconnectBtn.Content = "Connect"; 
                 }
                 catch (System.Exception ex)
@@ -169,6 +200,7 @@ namespace Simulation3d
                 {
                     _ComPort.Config(ComPortsComboBox.Text);
                     _ComPort.Open();
+                    this.ComPortText = ComPortsComboBox.Text; 
 
                     // Change label only if COM-port is connected. 
                     if (_ComPort.IsConnected)
@@ -192,7 +224,15 @@ namespace Simulation3d
         {
             if (e.Key == Key.M)         // Change mode (from simulation to measuring and vica versa). 
             {
-                this.IsSimalation = !this.IsSimalation;
+                if (_ComPort.IsConnected)
+                {
+                    System.Console.WriteLine("Unable to change mode while COM-port is connected.");
+                    return;
+                }
+                else
+                {
+                    this.IsSimalation = !this.IsSimalation;
+                }
             }
 
             if (this.IsSimalation)
@@ -201,7 +241,7 @@ namespace Simulation3d
             }
             else
             {
-                ModeLabel.Content = "MODE: measurements"; 
+                ModeLabel.Content = "MODE: measurement"; 
                 return; 
             }
 

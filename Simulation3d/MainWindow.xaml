@@ -81,16 +81,16 @@
             <Label Content="TEMPERATURE (Celcius):" HorizontalAlignment="Left" Margin="10,255" VerticalAlignment="Top" Foreground="Black" Height="30"/>
             <Label Name="TemperatureLabel" Content="0" HorizontalAlignment="Left" Margin="10,270" VerticalAlignment="Top" Foreground="Black" Height="25"/>
             
-            <Label Name="InfoLabel" HorizontalAlignment="Left" Margin="150,15" VerticalAlignment="Top" Foreground="Black" Height="25" Width="300" />
+            <Label Name="InfoLabel" HorizontalAlignment="Left" Margin="150,15" VerticalAlignment="Top" Foreground="Black" Height="25" Width="350" />
             
-            <Label Name="ModeLabel" Content="MODE: simulation" HorizontalAlignment="Left" Margin="150,300" VerticalAlignment="Top" Foreground="Black" Height="25" Width="300" />
+            <Label Name="ModeLabel" Content="MODE: simulation" HorizontalAlignment="Left" Margin="150,350" VerticalAlignment="Top" Foreground="Black" Height="25" Width="300" />
 
             <!--UART configuration area.-->
             <Button Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" Margin="10,165" VerticalAlignment="Top" Foreground="Black" Height="25" Width="60" Click="RefreshBtn_Click" />
             <Button Name="ConnectDisconnectBtn" Content="Connect" HorizontalAlignment="Left" Margin="75,165" VerticalAlignment="Top" Foreground="Black" Height="25" Width="60" Click="ConnectDisconnectBtn_Click" />
             <Label Content="Available COM-ports:" HorizontalAlignment="Left" Margin="10,190" VerticalAlignment="Top" Foreground="Black" Height="25"/>
             <StackPanel>
-                <ComboBox Name="ComPortsComboBox" HorizontalAlignment="Left" Margin="10,215" VerticalAlignment="Top" Foreground="Black" Height="25" Width="125"/>
+                <ComboBox Name="ComPortsComboBox" HorizontalAlignment="Left" Margin="10,215" VerticalAlignment="Top" Foreground="Black" Height="25" Width="125" DropDownOpened="ComPortsComboBox_DropDownOpened" />
             </StackPanel>
         </Canvas>
     </Grid>
