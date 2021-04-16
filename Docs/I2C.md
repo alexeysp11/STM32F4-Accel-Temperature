@@ -104,7 +104,7 @@ GPIOB::PUPDR::PUPDR9::NoPullUpNoPullDown::Set();
 ![](https://www.digikey.be/maker-media/98f1d94e-d1a0-403f-9afd-baecd0e8afb2)
 
 Изначально Master находится в режиме *master transmit*, отправляет START и затем 7-битный адрес slave-устройства, с которым он хочет связаться. 
-Затем, наконец, следует один бит, указывающий, хочет ли Master записать данные в регистр данных slave-устройства (тогда ставит 0) или прочитать данные от slave-устройства (тогда ставит 1).
+Затем, наконец, следует один бит, указывающий, хочет ли Master записать данные в регистр данных slave-устройства (тогда ставит 0) или прочитать данные от slave-устройства (тогда ставит 1). 
 ```C++
 #define DEVICE_ID   0x53 
 
@@ -190,6 +190,146 @@ if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
 
 Транзакция I2C может состоять из нескольких сообщений. 
 Мастер завершает сообщение условием STOP, если это конец транзакции, или он может отправить другое условие START, чтобы сохранить контроль над шиной для другого сообщения (транзакция «комбинированного формата»).
+
+Перед началом взаимодействия с I2C советуют сбрасывать I2C с помощью `I2C1::CR1::SWRST::UnderReset::Set()`, причём сначала проверить, не занята ли шина с помощью `I2C1::SR2::BUSY::Value1::IsSet()`.
+Но при отладке выяснилось, что шина изначально занята, поэтому если мы хотим, чтобы I2C не сбрасывалась, пока не выяснится, что шина свободна, то мы застрянем в бесконечном цикле проверки.  
+Исходя из этого, соответствующий код был закомментирован.  
+
+Полный код работы с I2C представлен ниже: 
+```C++
+#define DEVICE_ID   0x53 
+
+union 
+{
+    uint16_t accelx_uint16; 
+    char accelx_char[2]; 
+} accelx;
+
+int lenght = 2; 
+
+extern "C"
+{
+  int __low_level_init(void)
+  {
+    /******************************************
+    * Clocking configuration. 
+    ******************************************/ 
+    
+    // Switch on external 16 MHz oscillator
+    RCC::CR::HSION::On::Set() ;
+    while (!RCC::CR::HSIRDY::Ready::IsSet());
+
+    // Switch system clock on external oscillator
+    RCC::CFGR::SW::Hsi::Set() ;
+    while (!RCC::CFGR::SWS::Hsi::IsSet());
+        
+    // Switch on clock on Port B. 
+    RCC::AHB1ENR::GPIOBEN::Enable::Set();
+    
+    /******************************************
+    * PB8 and PB9 configuration. 
+    ******************************************/ 
+
+    // Enable PB8 and PB9 for I2C1 as alternate. 
+    GPIOB::MODERPack<
+        GPIOB::MODER::MODER8::Alternate, 
+        GPIOB::MODER::MODER9::Alternate  
+        >::Set();
+
+    // Set the alternate functions for pins 8 and 9. 
+    GPIOB::AFRH::AFRH8::Af4::Set(); 
+    GPIOB::AFRH::AFRH9::Af4::Set(); 
+
+    // Type register open drain. 
+    GPIOB::OTYPER::OT8::OutputOpenDrain::Set(); 
+    GPIOB::OTYPER::OT9::OutputOpenDrain::Set(); 
+
+    // Output speed register low. 
+    GPIOB::OSPEEDR::OSPEEDR8::LowSpeed::Set(); 
+    GPIOB::OSPEEDR::OSPEEDR9::LowSpeed::Set(); 
+
+    // No internal pull up, pull down resistors. 
+    GPIOB::PUPDR::PUPDR8::NoPullUpNoPullDown::Set(); 
+    GPIOB::PUPDR::PUPDR9::NoPullUpNoPullDown::Set(); 
+    
+    /******************************************
+    * I2C1 configuration. 
+    ******************************************/ 
+    
+    // Peripheral clock enable register. 
+    RCC::APB1ENR::I2C1EN::Enable::Set();
+    
+    // I2C1 clocking (2 MHz).
+    I2C1::CR2::FREQ::Set(0b000010); 
+    
+    // Enable peripheral. 
+    I2C1::CR1::PE::Enable::Set(); 
+    
+    return 1;
+  }
+}
+
+/******************************************
+* Main code. 
+******************************************/ 
+
+int main()
+{
+    // Reset I2C. 
+    //while ( I2C1::SR2::BUSY::Value1::IsSet() );  // While the bus is busy, just wait. 
+    //I2C1::CR1::SWRST::UnderReset::Set();         // When the bus is not busy, reset I2C. 
+    
+    while(1)
+    {
+        // Assert that master wants to write register address for ADXL345. 
+        I2C1::CR1::START::Enable::Set();            // Send start bit. 
+        I2C1::OAR1::ADD7::Set(DEVICE_ID);           // Set address of device ADXL345. 
+        I2C1::OAR1::ADD0::Value0::Set();            // Master writes.
+        
+        // Get ACK if ADXL345 exists (ACK = 0). 
+        if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+        {
+            // Write register address of ADXL345 (for example, DATAX0).
+            I2C1::OAR1::ADD7::Set(0x32);
+
+            // Get if ADXL345 got address. 
+            if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+            {
+                I2C1::CR1::STOP::Enable::Set();            // Send stop bit. 
+            }
+        }
+        
+        // Assert that master wants to read register address for ADXL345. 
+        I2C1::CR1::START::Enable::Set();            // Send start bit. 
+        I2C1::OAR1::ADD7::Set(DEVICE_ID);           // Set address of device ADXL345. 
+        I2C1::OAR1::ADD0::Value1::Set();            // Master reads.
+        
+        // Get ACK if ADXL345 exists (ACK = 0). 
+        if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+        {
+            // Read data from DATAX0 and DATAX1 of ADXL345. 
+            for (int i = 0; i < lenght; i++)
+            {
+                accelx.accelx_char[i] = I2C1::DR::Get(); 
+
+                if (i != lenght)
+                {
+                    I2C1::CR1::ACK::NoAcknowledge::Set();   // Mater sets ACK = 0 for any byte (except the last one). 
+                }
+                else 
+                {
+                    I2C1::CR1::ACK::Acknowledge::Set();     // Mater sets ACK = 1 for the last byte. 
+                }
+            }
+            
+            // Master sends stop bit. 
+            I2C1::CR1::STOP::Enable::Set();
+        }
+    }
+  
+    return 0 ;
+}
+```
 
 ## Список использованной литературы 
 
