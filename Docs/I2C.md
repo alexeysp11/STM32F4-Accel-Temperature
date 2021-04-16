@@ -59,15 +59,120 @@ Slave узел - узел, принимающий тактовую частот�
 
 ## Алгоритм работы с I2C
 
-Последовательность заполнения данных представлена на рисунке ниже: 
+Для работы с любой периферией, сначала нужно подать тактирование на порт, который будет использоваться (для подключения платы Accessory Shield используется PB8 и PB9), после этого настроим выводы для работы с I2C:  
+```C++
+// Switch on external 16 MHz oscillator
+RCC::CR::HSION::On::Set() ;
+while (!RCC::CR::HSIRDY::Ready::IsSet());
+
+// Switch system clock on external oscillator
+RCC::CFGR::SW::Hsi::Set() ;
+while (!RCC::CFGR::SWS::Hsi::IsSet());
+    
+// Switch on clock on Port B. 
+RCC::AHB1ENR::GPIOBEN::Enable::Set();
+
+// Enable PB8 and PB9 for I2C1 as alternate. 
+GPIOB::MODERPack<
+    GPIOB::MODER::MODER8::Alternate, 
+    GPIOB::MODER::MODER9::Alternate  
+    >::Set();
+
+// Set the alternate functions for pins 8 and 9. 
+GPIOB::AFRH::AFRH8::Af4::Set(); 
+GPIOB::AFRH::AFRH9::Af4::Set(); 
+
+// Type register open drain. 
+GPIOB::OTYPER::OT8::OutputOpenDrain::Set(); 
+GPIOB::OTYPER::OT9::OutputOpenDrain::Set(); 
+
+// Output speed register low. 
+GPIOB::OSPEEDR::OSPEEDR8::LowSpeed::Set(); 
+GPIOB::OSPEEDR::OSPEEDR9::LowSpeed::Set(); 
+
+// No internal pull up, pull down resistors. 
+GPIOB::PUPDR::PUPDR8::NoPullUpNoPullDown::Set(); 
+GPIOB::PUPDR::PUPDR9::NoPullUpNoPullDown::Set(); 
+```
+
+**Комментарий к коду**: тактирование будет идти от *внешнего генератора* 16 МГц, затем к источнику тактирования подключается порт В, далее `PB8` и `PB9` для `I2C1` включаются как *alternate*, выбирается тип регистра с *открытым стоком* (англ. *open drain*), низкая выходная скорость регистра для портов `PB8` и `PB9` и отсутствие резистров на выводах SDA и SCL акселерометра **ADXL345**, подтягивающих к питанию или к земле (ниже представлена схема для акселерометра **ADXL345**). 
+
+![ADXL345_Scematic](img/DataTransmission/ADXL345_Scematic.png)
+
+Последовательность заполнения данных для I2C представлена на рисунке ниже: 
 
 ![](https://www.digikey.be/maker-media/98f1d94e-d1a0-403f-9afd-baecd0e8afb2)
 
 Изначально Master находится в режиме *master transmit*, отправляет START и затем 7-битный адрес slave-устройства, с которым он хочет связаться. 
 Затем, наконец, следует один бит, указывающий, хочет ли Master записать данные в регистр данных slave-устройства (тогда ставит 0) или прочитать данные от slave-устройства (тогда ставит 1).
+```C++
+#define DEVICE_ID   0x53 
+
+// Reset I2C. 
+while ( I21::SR2::BUSY::Value1::IsSet() );  // While the bus is busy, just wait. 
+I21::CR1::SWRST::UnderReset::Set();         // When the bus is not busy, reset I2C. 
+
+// Assert that master wants to write register address for ADXL345. 
+I2C1::CR1::START::Enable::Set();            // Send start bit. 
+I2C1::OAR1::ADD7::Set(DEVICE_ID);           // Set address of device ADXL345. 
+I2C1::OAR1::ADD0::Value0::Set();            // Master writes.
+```
 
 Если slave-устройство существует на шине, оно ответит битом ACK (активный низкий уровень для подтверждения) для этого адреса. 
+Затем запишем адрес регистра акселеерометра **ADXL345**, к которому нужно обращаться, снова получим ACK и пошлём стоповый бит. 
+```C++
+// Get ACK if ADXL345 exists (ACK = 0). 
+if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+{
+    // Write register address of ADXL345 (for example, DATAX0).
+    I2C1::OAR1::ADD7::Set(0x32);
+
+    // Get if ADXL345 got address. 
+    if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+    {
+        I2C1::CR1::STOP::Enable::Set();            // Send stop bit. 
+    }
+}
+```
+
 Затем ведущее и ведомое устройство продолжают работу в режиме передачи или приема (в зависимости от отправленного им бита чтения/записи).
+Например, для чтения данных из регистра `DATAX0` и `DATAX1` акселерометра **ADXL345**, пошлём стартовый бит, адрес устройства, установим бит для чтения (т.е. 1) и начнём чтение, в конце поставим ACK, равный единице, и стоповый бит.
+```C++
+// Assert that master wants to read register address for ADXL345. 
+I2C1::CR1::START::Enable::Set();            // Send start bit. 
+I2C1::OAR1::ADD7::Set(DEVICE_ID);           // Set address of device ADXL345. 
+I2C1::OAR1::ADD0::Value1::Set();            // Master reads.
+
+union 
+{
+    uint16_t accelx_uint16; 
+    char accelx_char[2]; 
+} accelx;
+
+int lenght = 2; 
+
+// Get ACK if ADXL345 exists (ACK = 0). 
+if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+{
+    // Read data from DATAX0 and DATAX1 of ADXL345. 
+    for (i = 0; i < lenght; i++)
+    {
+        accelx.accelx_char[i] = I2C1::DR::Get(); 
+
+        if (i != lenght)
+        {
+            I2C1::CR1::ACK::NoAcknowledge::Set();   // Mater sets ACK = 0 for any byte (except the last one). 
+        }
+        else 
+        {
+            I2C1::CR1::ACK::Acknowledge::Set();     // Mater sets ACK = 1 for the last byte. 
+        }
+    }
+    
+    // Master sends stop bit. 
+    I2C1::CR1::STOP::Enable::Set();
+}
+```
 
 Байты адреса и данных передаются первым старшим битом (MSB). 
 Если ведущее устройство желает записать данные в ведомое устройство, оно повторно отправляет байт, при этом ведомое устройство отправляет бит ACK. 
