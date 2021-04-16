@@ -134,7 +134,7 @@ I2C1::OAR1::ADD0::Value0::Set();            // Master writes.
 if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
 {
     // Write register address of ADXL345 (for example, DATAX0).
-    I2C1::OAR1::ADD7::Set(0x32);
+    I2C1::DR::Write(0x32);
 
     // Get if ADXL345 got address. 
     if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
@@ -197,7 +197,31 @@ if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
 
 Полный код работы с I2C представлен ниже: 
 ```C++
-#define DEVICE_ID   0x53 
+/******************************************
+* ADXL345 functionality. 
+******************************************/ 
+
+#include "ADXL345.h"
+
+/******************************************
+* CPU registers. 
+******************************************/ 
+
+#include "gpiobregisters.hpp"           // for GPIOB (PB8 and PB9).
+#include "rccregisters.hpp"             // for RCC.
+//#include "nvicregisters.hpp"            // for NVIC.
+#include "i2c1registers.hpp"            // for I2C1.
+
+/******************************************
+* Common C++ includes. 
+******************************************/ 
+
+#include <cstdint>                      // for int types such as uint32_t.
+#include <iostream>                     // for std::cout. 
+
+/******************************************
+* Global variables. 
+******************************************/ 
 
 union 
 {
@@ -205,7 +229,23 @@ union
     char accelx_char[2]; 
 } accelx;
 
+union 
+{
+    uint16_t accely_uint16; 
+    char accely_char[2]; 
+} accely;
+
+union 
+{
+    uint16_t accelz_uint16; 
+    char accelz_char[2]; 
+} accelz;
+
 int lenght = 2; 
+
+/******************************************
+* Low level initialization. 
+******************************************/ 
 
 extern "C"
 {
@@ -265,8 +305,65 @@ extern "C"
     // Enable peripheral. 
     I2C1::CR1::PE::Enable::Set(); 
     
+    // Slave address. 
+    //I2C1::OAR1::ADD7::Set(DeviceID); 
+    
     return 1;
   }
+}
+
+void write(char device, char reg)
+{
+    // Assert that master wants to write register address for ADXL345. 
+    I2C1::CR1::START::Enable::Set();            // Send start bit. 
+    I2C1::OAR1::ADD7::Set(device);           // Set address of device ADXL345. 
+    I2C1::OAR1::ADD0::Value0::Set();            // Master writes.
+    
+    // Get ACK if ADXL345 exists (ACK = 0). 
+    if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+    {
+        // Write register address of ADXL345 (for example, DATAX0).
+        I2C1::DR::Write(reg);
+
+        // Get if ADXL345 got address. 
+        if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+        {
+            I2C1::CR1::START::Disable::Set();          // Disable start bit. 
+            I2C1::CR1::STOP::Enable::Set();            // Send stop bit. 
+        }
+    }
+}
+
+void read(char device, char *var)
+{
+    // Assert that master wants to read register address for ADXL345. 
+    I2C1::CR1::STOP::Disable::Set();            // Disable stop bit.
+    I2C1::CR1::START::Enable::Set();            // Send start bit. 
+    I2C1::OAR1::ADD7::Set(device);     // Set address of device ADXL345. 
+    I2C1::OAR1::ADD0::Value1::Set();            // Master reads.
+    
+    // Get ACK if ADXL345 exists (ACK = 0). 
+    if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
+    {
+        // Read data from DATAX0 and DATAX1 of ADXL345. 
+        for (int i = 0; i < lenght; i++)
+        {
+            var[i] = I2C1::DR::Get(); 
+
+            if (i != lenght)
+            {
+                I2C1::CR1::ACK::NoAcknowledge::Set();   // Mater sets ACK = 0 for any byte (except the last one). 
+            }
+            else 
+            {
+                I2C1::CR1::ACK::Acknowledge::Set();     // Mater sets ACK = 1 for the last byte. 
+            }
+        }
+        
+        // Master sends stop bit. 
+        I2C1::CR1::STOP::Enable::Set();
+    }
+    I2C1::CR1::STOP::Disable::Set();            // Disable stop bit.
 }
 
 /******************************************
@@ -281,50 +378,19 @@ int main()
     
     while(1)
     {
-        // Assert that master wants to write register address for ADXL345. 
-        I2C1::CR1::START::Enable::Set();            // Send start bit. 
-        I2C1::OAR1::ADD7::Set(DEVICE_ID);           // Set address of device ADXL345. 
-        I2C1::OAR1::ADD0::Value0::Set();            // Master writes.
+        write(ADXL345_ADDRESS, ADXL345_DATAX0); 
+        read(ADXL345_ADDRESS, &(accelx.accelx_char[0])); 
         
-        // Get ACK if ADXL345 exists (ACK = 0). 
-        if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
-        {
-            // Write register address of ADXL345 (for example, DATAX0).
-            I2C1::OAR1::ADD7::Set(0x32);
-
-            // Get if ADXL345 got address. 
-            if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
-            {
-                I2C1::CR1::STOP::Enable::Set();            // Send stop bit. 
-            }
-        }
+        write(ADXL345_ADDRESS, ADXL345_DATAY0); 
+        read(ADXL345_ADDRESS, &(accely.accely_char[0])); 
         
-        // Assert that master wants to read register address for ADXL345. 
-        I2C1::CR1::START::Enable::Set();            // Send start bit. 
-        I2C1::OAR1::ADD7::Set(DEVICE_ID);           // Set address of device ADXL345. 
-        I2C1::OAR1::ADD0::Value1::Set();            // Master reads.
+        write(ADXL345_ADDRESS, ADXL345_DATAZ0); 
+        read(ADXL345_ADDRESS, &(accelz.accelz_char[0])); 
         
-        // Get ACK if ADXL345 exists (ACK = 0). 
-        if ( I2C1::CR1::ACK::NoAcknowledge::IsSet() )
-        {
-            // Read data from DATAX0 and DATAX1 of ADXL345. 
-            for (int i = 0; i < lenght; i++)
-            {
-                accelx.accelx_char[i] = I2C1::DR::Get(); 
-
-                if (i != lenght)
-                {
-                    I2C1::CR1::ACK::NoAcknowledge::Set();   // Mater sets ACK = 0 for any byte (except the last one). 
-                }
-                else 
-                {
-                    I2C1::CR1::ACK::Acknowledge::Set();     // Mater sets ACK = 1 for the last byte. 
-                }
-            }
-            
-            // Master sends stop bit. 
-            I2C1::CR1::STOP::Enable::Set();
-        }
+        // Print out accelerations along all axis. 
+        std::cout << "X: " << accelx.accelx_uint16 << " "; 
+        std::cout << "Y: " << accely.accely_uint16 << " "; 
+        std::cout << "Z: " << accelz.accelz_uint16 << std::endl; 
     }
   
     return 0 ;
