@@ -108,6 +108,15 @@ GPIOB::PUPDR::PUPDR9::NoPullUpNoPullDown::Set();
 ```C++
 #define DEVICE_ID   0x53 
 
+// Peripheral clock enable register. 
+RCC::APB1ENR::I2C1EN::Enable::Set();
+
+// I2C1 clocking (2 MHz).
+I2C1::CR2::FREQ::Set(0b000010); 
+
+// Enable peripheral. 
+I2C1::CR1::PE::Enable::Set(); 
+
 // Reset I2C. 
 while ( I21::SR2::BUSY::Value1::IsSet() );  // While the bus is busy, just wait. 
 I21::CR1::SWRST::UnderReset::Set();         // When the bus is not busy, reset I2C. 
