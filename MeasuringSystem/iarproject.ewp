@@ -367,7 +367,6 @@
                     <state>$PROJ_DIR$\AHardware\Registers\DataTransmission</state>
                     <state>$PROJ_DIR$\AHardware\Registers</state>
                     <state>$PROJ_DIR$\AHardware\Atomic</state>
-                    <state>$PROJ_DIR$\AHardware\I2C</state>
                     <state>$PROJ_DIR$\AHardware\ADC</state>
                     <state>$PROJ_DIR$\AHardware\USART</state>
                     <state>$PROJ_DIR$\Common</state>
@@ -2149,12 +2148,6 @@
             </file>
         </group>
         <group>
-            <name>I2C</name>
-            <file>
-                <name>$PROJ_DIR$\AHardware\I2C\I2C.h</name>
-            </file>
-        </group>
-        <group>
             <name>InterruptHandler</name>
             <file>
                 <name>$PROJ_DIR$\AHardware\InterruptHandler\interrupthandler.hpp</name>
@@ -2560,15 +2553,6 @@
     <group>
         <name>Measurement</name>
         <file>
-            <name>$PROJ_DIR$\Measurement\Acceleration.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Measurement\Acceleration.h</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Measurement\IVariableAccel.h</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\Measurement\IVariableTemp.h</name>
         </file>
         <file>
@@ -2584,22 +2568,10 @@
     <group>
         <name>Peripherals</name>
         <file>
-            <name>$PROJ_DIR$\Peripherals\AccelDriver.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Peripherals\AccelDriver.h</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\Peripherals\AdcDriver.cpp</name>
         </file>
         <file>
             <name>$PROJ_DIR$\Peripherals\AdcDriver.h</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Peripherals\I2CDriver.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Peripherals\I2CDriver.h</name>
         </file>
         <file>
             <name>$PROJ_DIR$\Peripherals\IDataSource.h</name>

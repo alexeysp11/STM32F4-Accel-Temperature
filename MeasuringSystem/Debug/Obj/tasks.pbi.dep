@@ -1,5 +1,5 @@
 tasks.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\tasks.c \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\tasks.c \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
@@ -10,20 +10,20 @@ tasks.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_stdlib.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\string.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_string.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\FreeRTOS.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\FreeRTOS.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/..\FreeRTOSConfig.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/projdefs.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/portable.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/deprecated_definitions.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\portable\IAR\ARM_CM4F\portmacro.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/..\FreeRTOSConfig.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/projdefs.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/portable.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/deprecated_definitions.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\portable\IAR\ARM_CM4F\portmacro.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\intrinsics.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iccarm_builtin.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iar_intrinsics_common.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/mpu_wrappers.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\task.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/list.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\timers.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/task.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\StackMacros.h
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/mpu_wrappers.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\task.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/list.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\timers.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/task.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\StackMacros.h

@@ -11,7 +11,6 @@
  *****************************************************/
 
 #include "IVariableTemp.h"      // for IVariableTemp. 
-#include "IVariableAccel.h"     // for IVariableAccel. 
 
 /*****************************************************
  * RTOS members. 
@@ -41,8 +40,7 @@ public:
      * @param temp
      * @param accel
      */
-    MeasureTask(IVariableTemp& temp, IVariableAccel& accel) : m_temp(temp), 
-                                                              m_accel(accel)
+    MeasureTask(IVariableTemp& temp) : m_temp(temp)
     {
     }
         
@@ -51,7 +49,6 @@ public:
     float* GetData();
 private: 
     IVariableTemp& m_temp;
-    IVariableAccel& m_accel; 
     std::size_t size = 4U; 
     float buffer[4];
 };

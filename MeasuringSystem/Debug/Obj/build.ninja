@@ -24,11 +24,8 @@ build irqcontroller.pbi : index irqcontroller.xcl
 build MeasureTask.pbi : index MeasureTask.xcl
 build SendTask.pbi : index SendTask.xcl
 build Filter.pbi : index Filter.xcl
-build Acceleration.pbi : index Acceleration.xcl
 build Temperature.pbi : index Temperature.xcl
-build AccelDriver.pbi : index AccelDriver.xcl
 build AdcDriver.pbi : index AdcDriver.xcl
-build I2CDriver.pbi : index I2CDriver.xcl
 build TempSensor.pbi : index TempSensor.xcl
 build port.pbi : index port.xcl
 build croutine.pbi : index croutine.xcl
@@ -41,10 +38,10 @@ build TransmissionManager.pbi : index TransmissionManager.xcl
 build main.pbi : index main.xcl
 build startupF411RE.pbi : index startupF411RE.xcl
 build iarproject_part0.pbi : link irqcontroller.pbi MeasureTask.pbi SendTask.pbi Filter.pbi
-build iarproject_part1.pbi : link Acceleration.pbi Temperature.pbi AccelDriver.pbi AdcDriver.pbi
-build iarproject_part2.pbi : link I2CDriver.pbi TempSensor.pbi port.pbi croutine.pbi
-build iarproject_part3.pbi : link event_groups.pbi list.pbi queue.pbi tasks.pbi
-build iarproject_part4.pbi : link timers.pbi TransmissionManager.pbi main.pbi startupF411RE.pbi
+build iarproject_part1.pbi : link Temperature.pbi AdcDriver.pbi TempSensor.pbi port.pbi
+build iarproject_part2.pbi : link croutine.pbi event_groups.pbi list.pbi queue.pbi
+build iarproject_part3.pbi : link tasks.pbi timers.pbi TransmissionManager.pbi main.pbi
+build iarproject_part4.pbi : link startupF411RE.pbi
 build iarproject.pbd : link iarproject_part0.pbi iarproject_part1.pbi iarproject_part2.pbi iarproject_part3.pbi iarproject_part4.pbi
 build iarproject.pbw : browsedata iarproject.pbd
 

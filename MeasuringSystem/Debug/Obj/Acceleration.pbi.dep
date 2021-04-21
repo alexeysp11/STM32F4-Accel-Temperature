@@ -1,14 +1,14 @@
 Acceleration.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Measurement\Acceleration.cpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Measurement/Acceleration.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Measurement/IVariableAccel.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals\AccelDriver.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals/I2CDriver.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals/IDataSource.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\I2C\I2C.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\i2c1registers.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\i2c1fieldvalues.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\fieldvalue.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Measurement\Acceleration.cpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Measurement/Acceleration.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Measurement/IVariableAccel.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Peripherals\AccelDriver.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Peripherals/I2CDriver.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Peripherals/IDataSource.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\I2C\I2C.h \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\i2c1registers.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\i2c1fieldvalues.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers\fieldvalue.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cstddef \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
@@ -34,10 +34,10 @@ Acceleration.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\wchar.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xstddef \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\initializer_list \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvaluebase.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvaluebase.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\type_traits \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/accessmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Common\susudefs.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers/accessmode.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Common\susudefs.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\algorithm \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xmemory \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xmemory0 \
@@ -57,10 +57,10 @@ Acceleration.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\xatomic.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cassert \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\assert.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registerfield.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\registerbase.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registertype.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\register.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Filters\IFilter.h
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers/registerfield.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers\registerbase.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers/registertype.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers\register.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvalue.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp \
+  C:\Users\User\Desktop\university\CsharpCpp\Stm32Project\MeasuringSystem\Filters\IFilter.h

@@ -11,17 +11,9 @@
  *****************************************************/
 
 #include "Temperature.h"        // for Temperature. 
-#include "Acceleration.h"       // for Acceleration. 
-
-#include "TempSensor.h"         // for TempSensor. 
-#include "AccelDriver.h"        // for AccelDriver (aka sensor for acceleration). 
-
+#include "TempSensor.h"         // for TempSensor.  
 #include "AdcDriver.h"          // for AdcDriver. 
-#include "I2CDriver.h"          // for I2CDriver. 
-
 #include "Adc.h"                // for Adc. 
-#include "I2C.h"                // for I2C. 
-
 #include "filterconfig.h"       // for filter. 
 
 /*****************************************************
@@ -36,16 +28,8 @@
  *****************************************************/
 
 inline Adc<ADC1> adc; 
-inline I2C<I2C1> i2c; 
-
 inline AdcDriver adcDriver(adc); 
-inline I2CDriver i2cDriver(i2c); 
-
 inline TempSensor tempSensor(adcDriver); 
-inline AccelDriver accelDriver(i2cDriver); 
-
 inline Temperature temperature(tempSensor, filter);
-inline Acceleration acceleration(accelDriver, filter); 
-
 
 #endif  // _MEASURECONFIG_H

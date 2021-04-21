@@ -22,6 +22,8 @@
 
 "--drv_debug_ap=0" 
 
+"--stlink_probe=stlinkv2" 
+
 
 
 

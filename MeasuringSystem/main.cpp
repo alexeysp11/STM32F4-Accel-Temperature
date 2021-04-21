@@ -109,7 +109,7 @@ extern "C" {
 //OsWrapper::Event sendEvent{100ms, 1};
 
 // A task for measuring data. 
-MeasureTask measureTask(temperature, acceleration);
+MeasureTask measureTask(temperature);
 
 // An object that provides functionality for data transmission. 
 TransmissionManager tm(usartDriver);
