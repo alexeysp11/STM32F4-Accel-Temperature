@@ -16,34 +16,34 @@
 uint8_t I2CBase::i2c_read(uint8_t address, uint8_t registry)
 {
 
-	while(I2C1->SR2 & I2C_SR2_BUSY);		// Wait for BUSY line
-	I2C1->CR1 |= I2C_CR1_START;				// Generate START condition
+	while( I2C1::SR2::BUSY::Value1::IsSet() );		// Wait for BUSY line
+	I2C1::CR1::START::Enable::Set();				// Generate START condition
 
-	while (!(I2C1->SR1 & I2C_SR1_SB)); 		// Wait for EV5
-	I2C1->DR = address<<1;					// Write device address (W)
+	while (!( I2C1::SR1::SB::Value1::IsSet() )); 	// Wait for start condition is generated. 
+	I2C1::DR::Write(address << 1);					// Write device address (W)
 
-	while (!(I2C1->SR1 & I2C_SR1_ADDR));	// Wait for EV6
+	while (!( I2C1::SR1::ADDR::Value1::IsSet() ));	// Wait for received address matched. 
+    (void)I2C1->SR2;								// Read SR2
+
+	while (!( I2C1::SR1::TXE::Value1::IsSet() ));		// Wait for transmit register is empty. 
+	I2C1::DR::Write(registry);
+
+	I2C1::CR1::STOP::Enable::Set();					// Generate STOP condition
+
+
+	I2C1::CR1::START::Enable::Set();				// Generate START condition
+
+	while (!( I2C1::SR1::SB::Value1::IsSet() )); 		// Wait for EV5
+	I2C1::DR::Write((address << 1 ) | 1);			// Write device address (R)
+
+	while (!( I2C1::SR1::ADDR::Value1::IsSet() ));	// Wait for EV6
+    I2C1::CR1::ACK::NoAcknowledge::Set();              // No ACK
     (void)I2C1->SR2;						// Read SR2
 
-	while (!(I2C1->SR1 & I2C_SR1_TXE));		// Wait for EV8_1
-	I2C1->DR = registry;
+	while (!( I2C1::SR1::RxNE::Value0::IsSet() ));	// Wait for RxNE is empty. 
+    uint8_t value = (uint8_t)I2C1::DR::Get();      // Read value
 
-	I2C1->CR1 |= I2C_CR1_STOP;				// Generate STOP condition
-
-
-	I2C1->CR1 |= I2C_CR1_START;				// Generate START condition
-
-	while (!(I2C1->SR1 & I2C_SR1_SB)); 		// Wait for EV5
-	I2C1->DR = (address << 1 ) | 1;			// Write device address (R)
-
-	while (!(I2C1->SR1 & I2C_SR1_ADDR));	// Wait for EV6
-    I2C1->CR1 &= ~I2C_CR1_ACK;              // No ACK
-    (void)I2C1->SR2;						// Read SR2
-
-	while (!(I2C1->SR1 & I2C_SR1_RXNE));	// Wait for EV7_1
-    uint8_t value = (uint8_t)I2C1->DR;      // Read value
-
-    I2C1->CR1 |= I2C_CR1_STOP;			    // Generate STOP condition
+    I2C1::CR1::STOP::Enable::Set();			    // Generate STOP condition
 
 	return value;
 }
@@ -78,7 +78,7 @@ void I2CBase::i2c_init(void)
 	/*
 	 *  Reset I2C from lock state
 	 */
-	//I2C1->CR1 |= I2C_CR1_SWRST;
+	I2C1->CR1 |= I2C_CR1_SWRST;
 
 	/*
 	 * FREQ: Set frequencey based on APB1 clock
