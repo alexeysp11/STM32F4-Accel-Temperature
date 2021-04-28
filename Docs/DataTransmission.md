@@ -1,10 +1,8 @@
 # Data Transmission 
 
-This file contains description of that how to configure registers in `TransmissionManager` class for creating packets for data sending via **USART** (in **MeasuringSystem**) and how to decode received bytes (in **Simulation3d**). 
+This file contains description of that how to configure registers in `TransmissionManager` class for creating packets for data sending via **USART**. 
 
 Read [here](UartPacket.md) to get information on how packets for data transmission look like (header byte **DT_HEAD**, 4 data bytes **DT_DATA[0:3]**, and CRC byte **DT_CRC** for *3-axis accelerometer* and *temperature sensor*). 
-
-## MeasuringSystem
 
 In the file `dtregisters.h` (relative path: `MeasuringSystem/AHardware/Registers/DataTransmission`) you can assign values for setting required bits into data transmission registers **DT**: 
 ```C
@@ -244,17 +242,3 @@ void SendTask::Execute()
     }
 }
 ```
-
-## Simulation3d
-
-<!--
-For Simulation3d (**WPF**): 
-```C#
-
-```
-
-For MeasuringSystem (): 
-```C#
-
-```
--->
