@@ -8,6 +8,9 @@
 
 #include "Filter.h"             // for Filter. 
 
-inline Filter filter;
+inline Filter TemperatureFilter; 
+inline Filter AccelXFilter;
+inline Filter AccelYFilter;
+inline Filter AccelZFilter;
 
 #endif  // _FILTERCONFIG_H

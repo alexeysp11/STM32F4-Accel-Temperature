@@ -13,7 +13,11 @@
 /**
  * @return float
  */
-float I2CDriver::Get() 
+float I2CDriver::Get(char device, char reg, std::uint16_t *var) 
 {
-    return 0.0;
+    // Get value from I2C_DR 
+    m_i2c.Write(device, reg);
+    m_i2c.Read(device, var);
+
+    return (float)(*var);
 }

@@ -1,12 +1,12 @@
 TempSensor.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals\TempSensor.cpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals/TempSensor.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals/AdcDriver.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals/IDataSource.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\ADC\Adc.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\adc1registers.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\adc1fieldvalues.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\fieldvalue.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals\TempSensor.cpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals/TempSensor.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals/AdcDriver.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals/IDataSource.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\ADC\Adc.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\STM32F411\adc1registers.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\STM32F411\FieldValues\adc1fieldvalues.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\fieldvalue.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cstddef \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
@@ -32,10 +32,10 @@ TempSensor.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\wchar.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xstddef \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\initializer_list \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvaluebase.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/fieldvaluebase.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\type_traits \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/accessmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Common\susudefs.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/accessmode.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Common\susudefs.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\algorithm \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xmemory \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xmemory0 \
@@ -55,9 +55,9 @@ TempSensor.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\xatomic.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cassert \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\assert.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registerfield.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\registerbase.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registertype.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\register.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/registerfield.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\registerbase.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/registertype.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\register.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/fieldvalue.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\accessmode.hpp

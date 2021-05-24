@@ -365,6 +365,7 @@
                     <state>$PROJ_DIR$\AHardware\Registers\STM32F411\FieldValues</state>
                     <state>$PROJ_DIR$\AHardware\Registers\STM32F411</state>
                     <state>$PROJ_DIR$\AHardware\Registers\DataTransmission</state>
+                    <state>$PROJ_DIR$\AHardware\Registers\Accelerometer</state>
                     <state>$PROJ_DIR$\AHardware\Registers</state>
                     <state>$PROJ_DIR$\AHardware\Atomic</state>
                     <state>$PROJ_DIR$\AHardware\I2C</state>
@@ -2171,6 +2172,12 @@
         </group>
         <group>
             <name>Registers</name>
+            <group>
+                <name>Accelerometer</name>
+                <file>
+                    <name>$PROJ_DIR$\AHardware\Registers\Accelerometer\ADXL345.h</name>
+                </file>
+            </group>
             <group>
                 <name>DataTransmission</name>
                 <file>
