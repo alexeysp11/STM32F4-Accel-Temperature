@@ -17,7 +17,9 @@ class Acceleration: public IVariableAccel
 public: 
     /**
      * @param sensor
-     * @param filter
+     * @param filter_x
+     * @param filter_y
+     * @param filter_z
      */
     Acceleration(AccelDriver& sensor, IFilter& filter_x, IFilter& filter_y, 
                  IFilter& filter_z) : m_sensor(sensor), m_filter_x(filter_x), 

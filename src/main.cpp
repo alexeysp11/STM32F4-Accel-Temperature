@@ -145,7 +145,7 @@ extern "C" {
     
     /*  Configure the clock control registers. */
     I2C1::CCR::F_S::StandartMode::Set();        // Set Sm mode. 
-    I2C1::CCR::CCRField::Set(100U);              // Set CCR in I2C_CCR (10 * T_SCLK). 
+    I2C1::CCR::CCRField::Set(100U);             // Set CCR in I2C_CCR (10 * T_SCLK). 
     
     /*  Configure the rise time register */ 
     // Maximum rise time in Fm/Sm mode (Master mode).
@@ -155,9 +155,9 @@ extern "C" {
     I2C1::CR1::PE::Enable::Set();               // Enable peripheral. 
     
     // Set address of ADXL345. 
-    I2C1::OAR1::ADD7::Set(ADXL345_ADDRESS);              // Set address of device ADXL345. 
+    I2C1::OAR1::ADD7::Set(ADXL345_ADDRESS);     // Set address of device ADXL345. 
     
-            // Send stop bit. 
+    // Send stop bit. 
     I2C1::CR1::STOP::Enable::Set();  
 
     return 1;
