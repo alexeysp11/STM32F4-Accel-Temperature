@@ -16,7 +16,7 @@
         <ShowSource>1</ShowSource>
     </Trace1>
     <DebugChecksum>
-        <Checksum>2038511734</Checksum>
+        <Checksum>421053543</Checksum>
     </DebugChecksum>
     <Disassembly>
         <InstrCount>0</InstrCount>
@@ -147,13 +147,15 @@
     </DisassembleMode>
     <Breakpoints2>
         <Bp0>_ 0 "EMUL_CODE" "{$PROJ_DIR$\Peripherals\TempSensor.cpp}.18.5" 0 0 1 "" 0 "" 0</Bp0>
-        <Bp1>_ 1 "EMUL_CODE" "{$PROJ_DIR$\Transmission\TransmissionManager.cpp}.38.9" 0 0 1 "" 0 "" 0</Bp1>
-        <Count>2</Count>
+        <Bp1>_ 1 "EMUL_CODE" "{$PROJ_DIR$\Application\MeasureTask.cpp}.30.9" 0 0 1 "" 0 "" 0</Bp1>
+        <Bp2>_ 1 "EMUL_CODE" "{$PROJ_DIR$\Transmission\TransmissionManager.cpp}.38.9" 0 0 1 "" 0 "" 0</Bp2>
+        <Count>3</Count>
     </Breakpoints2>
     <Aliases>
         <A0>_ "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\inc\cpp\ostream" ""</A0>
-        <A1>_ "C:\Stm32Project\MeasuringSystem\AHardware\ADC\Adc.h" "C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\ADC\Adc.h"</A1>
-        <Count>2</Count>
+        <A1>_ "C:\Stm32Project\MeasuringSystem\AHardware\ADC\Adc.h" "C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\ADC\Adc.h"</A1>
+        <A2>_ "C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals\AccelDriver.h" "C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals\AccelDriver.h"</A2>
+        <Count>3</Count>
         <SuppressDialog>0</SuppressDialog>
     </Aliases>
 </settings>

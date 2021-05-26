@@ -10,7 +10,7 @@ class IVariableAccel
 {
 public: 
     virtual void Measure() = 0;
-    virtual float* GetValue() = 0;
+    virtual float GetValue() = 0;
 private: 
     float* value;
 };

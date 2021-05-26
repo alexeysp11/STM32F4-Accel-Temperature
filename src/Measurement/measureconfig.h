@@ -44,8 +44,8 @@ inline I2CDriver i2cDriver(i2c);
 inline TempSensor tempSensor(adcDriver); 
 inline AccelDriver accelDriver(i2cDriver); 
 
-inline Temperature temperature(tempSensor, filter);
-inline Acceleration acceleration(accelDriver, filter); 
+inline Temperature temperature(tempSensor, TemperatureFilter);
+inline Acceleration acceleration(accelDriver, AccelXFilter, AccelYFilter, AccelZFilter); 
 
 
 #endif  // _MEASURECONFIG_H

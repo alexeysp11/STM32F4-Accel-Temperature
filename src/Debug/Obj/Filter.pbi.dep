@@ -1,4 +1,4 @@
 Filter.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Filters\Filter.cpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Filters/Filter.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Filters/IFilter.h
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Filters\Filter.cpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Filters/Filter.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Filters/IFilter.h

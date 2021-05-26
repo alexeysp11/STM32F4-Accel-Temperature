@@ -1,3 +1,3 @@
 irqcontroller.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\IrqController\irqcontroller.cpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\IrqController/irqcontroller.hpp
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\IrqController\irqcontroller.cpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\IrqController/irqcontroller.hpp

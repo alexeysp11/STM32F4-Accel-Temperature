@@ -1,7 +1,7 @@
 TransmissionManager.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Transmission\TransmissionManager.cpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Transmission/TransmissionManager.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals\UartDriver.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Transmission\TransmissionManager.cpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Transmission/TransmissionManager.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals\UartDriver.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cstdint \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
@@ -75,19 +75,19 @@ TransmissionManager.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cerrno \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\errno.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\tuple \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\USART\usartconfig.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\USART/UsartBase.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\usart2registers.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\usart2fieldvalues.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvaluebase.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/accessmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Common\susudefs.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registerfield.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\registerbase.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registertype.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\register.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\DataTransmission\dtregisters.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\USART\usartconfig.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\USART/UsartBase.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\STM32F411\usart2registers.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\STM32F411\FieldValues\usart2fieldvalues.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\fieldvalue.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/fieldvaluebase.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/accessmode.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Common\susudefs.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/registerfield.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\registerbase.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/registertype.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\register.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/fieldvalue.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\accessmode.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\DataTransmission\dtregisters.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\iostream

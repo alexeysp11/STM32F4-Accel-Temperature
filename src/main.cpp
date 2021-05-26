@@ -31,9 +31,11 @@
 
 #include "rccregisters.hpp"             // for RCC.
 #include "nvicregisters.hpp"            // for NVIC. 
-#include <gpioaregisters.hpp>           // for GPIOA.
+#include <gpioaregisters.hpp>           // for GPIOA (USART).
+#include "gpiobregisters.hpp"           // for GPIOB (PB8 and PB9).
 #include <gpiocregisters.hpp>           // for GPIOC.
 #include "usart2registers.hpp"          // for USART2. 
+#include "i2c1registers.hpp"            // for I2C1.
 #include "adccommonregisters.hpp"       // for ADC1. 
 
 #include "Application/Diagnostic/GlobalStatus.hpp"
@@ -100,6 +102,63 @@ extern "C" {
     ADC1::SMPR1::SMP18::Cycles84::Set();
     ADC1::CR2::ADON::Enable::Set();
     GPIOA::MODER::MODER0::Analog::Set();
+    
+    /******************************************
+    * PB8 and PB9 configuration. 
+    ******************************************/ 
+    
+    // Switch on clock on Port B. 
+    RCC::AHB1ENR::GPIOBEN::Enable::Set();
+
+    // Enable PB8 and PB9 for I2C1 as alternate. 
+    GPIOB::MODERPack<
+        GPIOB::MODER::MODER8::Alternate, 
+        GPIOB::MODER::MODER9::Alternate  
+        >::Set();
+    
+    // Set the alternate functions for pins 8 and 9. 
+    GPIOB::AFRH::AFRH8::Af4::Set(); 
+    GPIOB::AFRH::AFRH9::Af4::Set(); 
+
+    // Type register open drain. 
+    GPIOB::OTYPER::OT8::OutputOpenDrain::Set(); 
+    GPIOB::OTYPER::OT9::OutputOpenDrain::Set(); 
+
+    // Output speed register low. 
+    GPIOB::OSPEEDR::OSPEEDR8::LowSpeed::Set(); 
+    GPIOB::OSPEEDR::OSPEEDR9::LowSpeed::Set(); 
+
+    // No internal pull up, pull down resistors. 
+    GPIOB::PUPDR::PUPDR8::NoPullUpNoPullDown::Set(); 
+    GPIOB::PUPDR::PUPDR9::NoPullUpNoPullDown::Set(); 
+    
+    /******************************************
+    * I2C1 configuration. 
+    ******************************************/ 
+    
+    // Peripheral clock enable register. 
+    RCC::APB1ENR::I2C1EN::Enable::Set();    
+    
+    /* Program the peripheral input clock in I2C_CR2 Register in order 
+    to generate correct timings. */
+    I2C1::CR2::FREQ::Set(2U);                   // I2C1 clocking (2 MHz).
+    
+    /*  Configure the clock control registers. */
+    I2C1::CCR::F_S::StandartMode::Set();        // Set Sm mode. 
+    I2C1::CCR::CCRField::Set(100U);             // Set CCR in I2C_CCR (10 * T_SCLK). 
+    
+    /*  Configure the rise time register */ 
+    // Maximum rise time in Fm/Sm mode (Master mode).
+    I2C1::TRISE::TRISEField::Set(17U);
+    
+    /* Program the I2C_CR1 register to enable the peripheral. */ 
+    I2C1::CR1::PE::Enable::Set();               // Enable peripheral. 
+    
+    // Set address of ADXL345. 
+    I2C1::OAR1::ADD7::Set(ADXL345_ADDRESS);     // Set address of device ADXL345. 
+    
+    // Send stop bit. 
+    I2C1::CR1::STOP::Enable::Set();  
 
     return 1;
   }

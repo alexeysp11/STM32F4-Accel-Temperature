@@ -27,6 +27,7 @@ void MeasureTask::Execute()
         m_temp.Measure(); 
 
         // Measure acceleration. 
+        m_accel.Measure(); 
         
         /* Invoke `OsWrapper::IThread::Sleep()` that makes a delay that is 
         equal to a value of timeout between events. */
@@ -41,9 +42,9 @@ float* MeasureTask::GetData()
 {
     // Get measured data data. 
     buffer[0] = m_temp.GetValue();       // Get data from temperature sensor. 
-    buffer[1] = 0; 
-    buffer[2] = 0; 
-    buffer[3] = 0; 
+    buffer[1] = m_accel.GetValue(); 
+    buffer[2] = m_accel.GetValue(); 
+    buffer[3] = m_accel.GetValue(); 
     
     return &buffer[0];
 }

@@ -12,7 +12,7 @@
 #include "i2c1registers.hpp"    // for I2C registers. 
 
 
-class I2CDriver: public IDataSource 
+class I2CDriver
 {
 public: 
     /**
@@ -22,7 +22,7 @@ public:
     {
     }
         
-    float Get();
+    float Get(char device, char reg, std::uint16_t *var);
 private: 
     I2C<I2C1>& m_i2c;
 };

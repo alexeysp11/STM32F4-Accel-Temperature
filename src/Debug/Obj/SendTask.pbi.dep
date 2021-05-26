@@ -1,10 +1,10 @@
 SendTask.pbi: \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Application\SendTask.cpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Application/SendTask.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Application/MeasureTask.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Measurement\IVariableTemp.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Measurement\IVariableAccel.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\thread.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Application\SendTask.cpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Application/SendTask.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Application/MeasureTask.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Measurement\IVariableTemp.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Measurement\IVariableAccel.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper\thread.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\array \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\algorithm \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\xmemory \
@@ -76,49 +76,49 @@ SendTask.pbi: \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cerrno \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\errno.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\tuple \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\FreeRtos\rtosdefs.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\FreeRtos.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/..\FreeRTOSConfig.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/projdefs.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/portable.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/deprecated_definitions.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\portable\IAR\ARM_CM4F\portmacro.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper\FreeRtos\rtosdefs.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include\FreeRtos.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/..\FreeRTOSConfig.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/projdefs.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/portable.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/deprecated_definitions.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\portable\IAR\ARM_CM4F\portmacro.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\intrinsics.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iccarm_builtin.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iar_intrinsics_common.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/mpu_wrappers.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\task.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/list.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\semphr.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/queue.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\queue.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\timers.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/task.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include\event_groups.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\include/timers.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Common\susudefs.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/mpu_wrappers.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include\task.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/list.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include\semphr.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/queue.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include\queue.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include\timers.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/task.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include\event_groups.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\include/timers.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Common\susudefs.hpp \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\cassert \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\assert.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\FreeRtos\FreeRTOSConfig.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\FreeRtos\FreeRTOSConfig.h \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\chrono \
   C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\cpp\ratio \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\FreeRtos\rtoswrapper.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\FreeRtos/rtosdefs.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\eventmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper\event.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Rtos\wrapper/eventmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Transmission\TransmissionManager.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\Peripherals\UartDriver.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\USART\usartconfig.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\USART/UsartBase.h \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\usart2registers.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\STM32F411\FieldValues\usart2fieldvalues.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvaluebase.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/accessmode.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registerfield.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\registerbase.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/registertype.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\register.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers/fieldvalue.hpp \
-  C:\Users\User\Desktop\projects\Stm32Project\MeasuringSystem\AHardware\Registers\accessmode.hpp
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper\FreeRtos\rtoswrapper.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper\FreeRtos/rtosdefs.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper\eventmode.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper\event.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Rtos\wrapper/eventmode.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Transmission\TransmissionManager.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\Peripherals\UartDriver.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\USART\usartconfig.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\USART/UsartBase.h \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\STM32F411\usart2registers.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\STM32F411\FieldValues\usart2fieldvalues.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\fieldvalue.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/fieldvaluebase.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/accessmode.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/registerfield.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\registerbase.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/registertype.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\register.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers/fieldvalue.hpp \
+  C:\Users\User\Desktop\projects\STM32F4-Accel-Temperature\src\AHardware\Registers\accessmode.hpp
