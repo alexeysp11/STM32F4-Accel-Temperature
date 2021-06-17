@@ -18,9 +18,6 @@ Click [here](Docs/Design.md) to read about design of this application.
 - Accelerometer *ADXL345*; 
 - Any text editor (*VS Code*, *Sublime Text*, *Notepad++* etc). 
 
-Dependencies for `Simulation3d`: 
-- System.IO.Ports (Version 4.4.0). 
-
 ### C++ FreeRTOS wrapper 
 
 In order to perform both parallel measurements using two sensors (accelerometer and embedded temperature sensor) and sending all measured data via **USART**, FreeRTOS wrapper written in `C++` is used. 
