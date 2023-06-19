@@ -21,8 +21,9 @@
 - Акселерометр *ADXL345*; 
 - Любой тестовый редактор (*VS Code*, *Sublime Text*, *Notepad++* etc). 
 
-Зависимости для `Simulation3d`: 
-- System.IO.Ports (Version 4.4.0). 
+### UI 
+
+Для визуализации данных, измеренных микроконтроллером, можно использовать проект [Thermometer-SerialPort-WPF](https://github.com/alexeysp11/Thermometer-SerialPort-WPF).
 
 ### C++ FreeRTOS wrapper 
 

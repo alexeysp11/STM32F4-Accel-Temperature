@@ -21,8 +21,9 @@ The application is written in `C++` for microcontroller **STM32F411RE**.
 - Accelerometer *ADXL345*; 
 - Any text editor (*VS Code*, *Sublime Text*, *Notepad++* etc). 
 
-Dependencies for `Simulation3d`: 
-- System.IO.Ports (Version 4.4.0). 
+### UI 
+
+In order to visualize the measured data, you can use [Thermometer-SerialPort-WPF](https://github.com/alexeysp11/Thermometer-SerialPort-WPF). 
 
 ### C++ FreeRTOS wrapper 
 
