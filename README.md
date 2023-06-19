@@ -1,12 +1,15 @@
 # STM32F4-Accel-Temperature 
 
-`STM32F4-Accel-Temperature` is a project that allows you to determine the position of an object in *three-dimensional space* with the transfer of data from MCU to a computer.
+Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
 
+`STM32F4-Accel-Temperature` is a project that allows you to determine the position of an object in *three-dimensional space* with the transfer of data from MCU to a computer.
 Data from *accelerometer* to *microcontroller* is transmitted via **I2C** interface, and from *microcontroller* to *computer* via **USART** interface.
 
-The application allows to measure *relative accelerations* of an object using an accelerometer **ADXL345** and *temperature* using embedded temperature sensor (this part is written in `C++` for microcontroller **STM32F411RE**). 
+The application allows to measure *relative accelerations* of an object using an accelerometer **ADXL345** and *temperature* using embedded temperature sensor. 
 
-Click [here](Docs/Design.md) to read about design of this application. 
+The application is written in `C++` for microcontroller **STM32F411RE**. 
+
+[Click here](Docs/Design.md) to read about design of this application. 
 
 ## How to use 
 
@@ -23,11 +26,7 @@ Dependencies for `Simulation3d`:
 
 ### C++ FreeRTOS wrapper 
 
-In order to perform both parallel measurements using two sensors (accelerometer and embedded temperature sensor) and sending all measured data via **USART**, FreeRTOS wrapper written in `C++` is used. 
-
-Code from [this repository](https://github.com/lamer0k/RtosWrapper) was used as an example of the wrapper. 
-
-[Here](MeasuringSystem/README.adoc) you can read desciption on how the FreeRTOS wrapper is used in this particular application. 
+In order to perform both parallel measurements using the microcontroller, [C++ FreeRTOS wrapper](https://github.com/lamer0k/RtosWrapper) is used. 
 
 ### COM-port configuration
 
@@ -41,7 +40,5 @@ In order to download this repository, just type into console the following comma
 git clone https://github.com/alexeysp11/STM32F4-Accel-Temperature
 ```
 
-Then just open main directory using any text editor and just edit code. 
-
-If you want to edit code of this app, just open the *src* directory in the JetBrains Clion. 
-Or if you use IAR 8.40.2, open the `test.eww` workspace or `iarproject.ewp` project.
+Then just open main directory using any text editor (you can also use JetBrains Clion or IAR 8.40.2), and just edit code. 
+If you want to use IAR 8.40.2, open the `test.eww` workspace or `iarproject.ewp` project.
