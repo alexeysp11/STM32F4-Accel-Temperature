@@ -23,7 +23,7 @@ The application is written in `C++` for microcontroller **STM32F411RE**.
 
 ### UI 
 
-In order to visualize the measured data, you can use [Thermometer-SerialPort-WPF](https://github.com/alexeysp11/Thermometer-SerialPort-WPF). 
+In order to visualize the measured data, you can use [Model3d-SerialPort-WPF](https://github.com/alexeysp11/Model3d-SerialPort-WPF) or [Thermometer-SerialPort-WPF](https://github.com/alexeysp11/Thermometer-SerialPort-WPF). 
 
 ### C++ FreeRTOS wrapper 
 

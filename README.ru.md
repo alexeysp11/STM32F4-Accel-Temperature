@@ -23,7 +23,7 @@
 
 ### UI 
 
-Для визуализации данных, измеренных микроконтроллером, можно использовать проект [Thermometer-SerialPort-WPF](https://github.com/alexeysp11/Thermometer-SerialPort-WPF).
+Для визуализации данных, измеренных микроконтроллером, можно использовать проект [Model3d-SerialPort-WPF](https://github.com/alexeysp11/Model3d-SerialPort-WPF) или [Thermometer-SerialPort-WPF](https://github.com/alexeysp11/Thermometer-SerialPort-WPF).
 
 ### C++ FreeRTOS wrapper 
 
