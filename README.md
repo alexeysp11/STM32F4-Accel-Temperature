@@ -1,8 +1,12 @@
 # STM32F4-Accel-Temperature 
 
-Read this in other languages: [English](README.md), [Russian/Русский](README.ru.md). 
+[English](README.md) | [Русский](README.ru.md)
 
-`STM32F4-Accel-Temperature` is a project that allows you to determine the position of an object in *three-dimensional space* with the transfer of data from MCU to a computer.
+`STM32F4-Accel-Temperature` is a project that involves interfacing an accelerometer and temperature sensor with a microcontroller, collecting data from the sensors, and transmitting it to a computer. The application written in C++ will facilitate the data transfer process.
+
+## Overall description
+
+This project allows you to determine the position of an object in *three-dimensional space* with the transfer of data from MCU to a computer.
 Data from *accelerometer* to *microcontroller* is transmitted via **I2C** interface, and from *microcontroller* to *computer* via **USART** interface.
 
 The application allows to measure *relative accelerations* of an object using an accelerometer **ADXL345** and *temperature* using embedded temperature sensor. 
@@ -10,6 +14,26 @@ The application allows to measure *relative accelerations* of an object using an
 The application is written in `C++` for microcontroller **STM32F411RE**. 
 
 [Click here](Docs/Design.md) to read about design of this application. 
+
+### Goal
+
+The goal of the project is to develop a system that can determine the position of an object in three-dimensional space by collecting data from an accelerometer and transferring it to a computer.
+
+### Scope
+
+The scope of the project includes integrating an accelerometer (ADXL345) and temperature sensor with the microcontroller (STM32F411RE), and developing an application in C++ to collect and transfer data from the sensors to a computer.
+
+### Who can use this library
+
+This project can be used by engineers, researchers, or hobbyists who are interested in measuring relative accelerations and temperature of objects in three-dimensional space.
+
+### Examples of similar projects 
+
+Similar projects could include those that involve interfacing sensors with microcontrollers and transferring data to a computer, such as IoT projects or sensor data acquisition systems. Open-source examples may be available on platforms like GitHub. As for similar projects written in C#, they may include sensor data acquisition systems or IoT applications that involve data transfer from microcontrollers to computers.
+
+### Possible limitations
+
+Possible limitations of this project could include constraints on the accuracy and precision of the accelerometer and temperature sensor, limitations in the data transfer rate due to the interfaces used (I2C and USART), and potential challenges in calibrating and synchronizing the sensor data for accurate three-dimensional positioning. Additionally, limitations could arise from the processing power and memory constraints of the microcontroller.
 
 ## How to use 
 
